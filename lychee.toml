@@ -7,5 +7,9 @@ exclude = [
 # 429 (limite de requisições) não indica link quebrado.
 accept = [200, 429]
 
-max_retries = 2
+# O github.com devolve 504 de forma intermitente sob carga; mais tentativas, com espera,
+# e menos conexões simultâneas evitam falso positivo sem aceitar o erro.
+max_retries = 6
+retry_wait_time = 10
+max_concurrency = 8
 timeout = 20
