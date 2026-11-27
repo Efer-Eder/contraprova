@@ -3,7 +3,7 @@
 #   gh label create "docs" --color 0075ca --description "Documentação em geral" --force
 - name: good first issue
   color: 7057ff
-  description: Reservado a pessoas que estão aprendendo; não deve ser resolvido por agentes nem com conteúdo gerado majoritariamente por IA
+  description: Para quem está aprendendo; não resolver com agentes nem com conteúdo majoritariamente de IA
 - name: help wanted
   color: 008672
   description: Ajuda externa é bem-vinda

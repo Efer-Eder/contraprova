@@ -125,7 +125,7 @@ O texto completo, com exemplos e fontes, está na [AI_POLICY.md](AI_POLICY.md).
 
 | Rótulo | Uso |
 |---|---|
-| `good first issue` | Reservado a pessoas que estão aprendendo; não deve ser resolvido por agentes nem com conteúdo gerado majoritariamente por IA |
+| `good first issue` | Para quem está aprendendo; não resolver com agentes nem com conteúdo majoritariamente de IA |
 | `help wanted` | Ajuda externa é bem-vinda |
 | `docs` | Documentação em geral |
 | `especificação` | Princípios, capacidades, critérios e demais itens da especificação |
