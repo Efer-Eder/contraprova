@@ -7,7 +7,7 @@
 
 > Nunca confie em uma IA apenas porque ela afirma que seu código funciona. Exija provas.
 
-[English](README.en.md) · [Manifesto](docs/manifesto.md) · [Documentação](docs/README.md) · [Roadmap](ROADMAP.md) · [Como contribuir](CONTRIBUTING.md)
+[English](README.en.md) · [Manifesto](docs/manifesto.md) · [Documentação](docs/README.md) · [Roadmap](ROADMAP.md) · [Como contribuir](CONTRIBUTING.md) · [Página do projeto](https://efer.online/projeto/contraprova/)
 
 ## Estado do projeto
 

@@ -11,7 +11,7 @@
 ### O que NÃO foi verificado
 
 - A página só foi testada em Chrome, em 375 e 1440 de largura. Contraste e foco foram revistos a olho, sem auditoria automática.
-- A publicação e a validação em produção são registradas depois do deploy.
+- Publicada em 2026-11-27: `/projeto/contraprova/` respondeu 200 e a forma sem barra 301, e as demais rotas públicas do site mantiveram o mesmo status de antes. O console da página no ar, aberta em Chrome headless, não mostrou erro. O Ponto e o card do GitHub não foram exercitados com interação.
 
 ## 2026-11-27: repositório público e proteção da main
 
