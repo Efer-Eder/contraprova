@@ -1,5 +1,18 @@
 # Progresso
 
+## 2026-11-27: página pública do projeto
+
+### O que foi feito
+
+- `site/index.html`: página estática com o estado do projeto logo no topo (fase de especificação, sem software para instalar), o problema, o significado do nome, os 12 princípios, os 4 estados de decisão, os modos consultivo e protegido, as 4 etapas sem prazos, a compatibilidade com agentes (seguindo a matriz, sem listar como compatível o que está não confirmado), como participar, o card de atividade do GitHub e um FAQ.
+- `deploy/`: script de publicação, script remoto e snippet do Nginx. O endereço do servidor vem de variável de ambiente local e não está no repositório.
+- `docs/publicar-pagina.md` e uma frase em `AGENTS.md` dizendo que `site/` e `deploy/` são manutenção do projeto, com as cópias dos adaptadores regeneradas.
+
+### O que NÃO foi verificado
+
+- A página só foi testada em Chrome, em 375 e 1440 de largura. Contraste e foco foram revistos a olho, sem auditoria automática.
+- A publicação e a validação em produção são registradas depois do deploy.
+
 ## 2026-11-27: repositório público e proteção da main
 
 ### O que passou a ser verdade
