@@ -6,6 +6,8 @@ decision-makers: Efer Eder
 
 # Licença MIT provisória e certificação de origem das contribuições por DCO
 
+Escopo do DCO esclarecido pelo [ADR-0008](0008-escopo-do-dco.md).
+
 ## Contexto e problema
 
 O manifesto define o Contraprova como proposta open source e deixa o licenciamento específico para investigação posterior (seção 28). É preciso uma licença desde o primeiro dia para que o projeto seja de fato open source, e um mecanismo para que quem contribui declare ter o direito de fazê-lo.

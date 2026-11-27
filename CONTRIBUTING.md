@@ -30,7 +30,7 @@ Ao participar, você concorda em seguir o [Código de Conduta](CODE_OF_CONDUCT.m
 
 1. Faça um fork do repositório e clone o seu fork.
 2. Crie um branch a partir de `main` com o nome no formato `tipo/assunto`, em inglês (por exemplo `docs/fix-glossary-typo`, `rfc/product-format`).
-3. Faça commits pequenos, no padrão [Conventional Commits 1.0.0](https://www.conventionalcommits.org/), em inglês, e **assinados** com `-s` (veja [DCO](#dco-certificado-de-origem-do-desenvolvedor)):
+3. Faça commits pequenos, no padrão [Conventional Commits 1.0.0](https://www.conventionalcommits.org/), em inglês, e **assinados** com `-s`, o que é exigido de contribuições externas (veja [DCO](#dco-certificado-de-origem-do-desenvolvedor)):
 
    ```bash
    git commit -s -m "docs: fix typo in glossary"
@@ -65,7 +65,7 @@ Ao participar, você concorda em seguir o [Código de Conduta](CODE_OF_CONDUCT.m
 O [template do PR](.github/PULL_REQUEST_TEMPLATE.md) traz o mesmo checklist:
 
 - [ ] Li o CONTRIBUTING.md e o AI_POLICY.md.
-- [ ] Os commits seguem Conventional Commits e têm `Signed-off-by` do autor humano.
+- [ ] Os commits seguem Conventional Commits e, em contribuição externa, têm `Signed-off-by` do autor humano.
 - [ ] Sem emoji e sem travessão nos arquivos alterados.
 - [ ] Afirmações com fonte e link.
 - [ ] Os links foram conferidos.
@@ -83,7 +83,9 @@ Procuro dar a primeira resposta a issues e PRs em até 7 dias. Isso é um objeti
 
 ## DCO (Certificado de Origem do Desenvolvedor)
 
-As contribuições são certificadas pelo [Developer Certificate of Origin 1.1](https://developercertificate.org/). Não há CLA. Ao assinar, você declara que tem o direito de contribuir aquele conteúdo sob a licença do projeto.
+As contribuições **externas**, isto é, de quem não é o mantenedor, são certificadas pelo [Developer Certificate of Origin 1.1](https://developercertificate.org/). Não há CLA. Ao assinar, você declara que tem o direito de contribuir aquele conteúdo sob a licença do projeto.
+
+Os commits do mantenedor não levam `Signed-off-by`: ele é o titular do copyright e licencia o próprio trabalho diretamente pela licença do projeto ([ADR-0008](docs/adr/0008-escopo-do-dco.md)).
 
 Para assinar, use `-s` em cada commit:
 
@@ -99,7 +101,7 @@ Signed-off-by: Nome Sobrenome <e-mail configurado no Git>
 
 Esqueceu de assinar? Em um commit só: `git commit --amend -s --no-edit`. Em vários: `git rebase --signoff main`, e então `git push --force-with-lease` no **seu** branch de PR.
 
-Só **humanos** assinam. Agentes de IA não adicionam `Signed-off-by`: quem assina é a pessoa que revisou e responde pela contribuição.
+Só **humanos** assinam. Agentes de IA nunca adicionam `Signed-off-by`: quem assina é a pessoa que revisou e responde pela contribuição externa.
 
 ## Contribuições assistidas por IA
 

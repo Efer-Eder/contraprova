@@ -117,7 +117,7 @@ Como não há código, a contribuição mais útil neste momento é intelectual:
 3. Proponha mudanças maiores por [RFC](docs/rfcs/README.md).
 4. Corrija, traduza ou melhore a documentação.
 
-O fluxo completo está em [CONTRIBUTING.md](CONTRIBUTING.md). As contribuições são certificadas por DCO (`git commit -s`), e o uso de IA nelas segue a [AI_POLICY.md](AI_POLICY.md) (divulgação obrigatória para contribuições externas; os mantenedores estão isentos dessa exigência).
+O fluxo completo está em [CONTRIBUTING.md](CONTRIBUTING.md). As contribuições externas são certificadas por DCO (`git commit -s`; os commits do mantenedor não levam `Signed-off-by`), e o uso de IA nelas segue a [AI_POLICY.md](AI_POLICY.md) (divulgação obrigatória para contribuições externas; os mantenedores estão isentos dessa exigência).
 
 ## Para quem usa agentes de IA
 

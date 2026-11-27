@@ -119,7 +119,7 @@ Since there is no code, the most useful contribution right now is intellectual:
 3. Propose larger changes through an [RFC](docs/rfcs/README.md).
 4. Fix, translate or improve the documentation.
 
-The full flow is in [CONTRIBUTING.md](CONTRIBUTING.md). Contributions are certified by DCO (`git commit -s`), and AI use in them follows the [AI_POLICY.md](AI_POLICY.md) (disclosure is required for external contributions; maintainers are exempt from that requirement).
+The full flow is in [CONTRIBUTING.md](CONTRIBUTING.md). External contributions are certified by DCO (`git commit -s`; the maintainer's commits do not carry `Signed-off-by`), and AI use in them follows the [AI_POLICY.md](AI_POLICY.md) (disclosure is required for external contributions; maintainers are exempt from that requirement).
 
 ## If you use AI agents
 

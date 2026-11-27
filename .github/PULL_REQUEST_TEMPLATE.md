@@ -30,7 +30,7 @@
 ## Checklist
 
 - [ ] Li o CONTRIBUTING.md e o AI_POLICY.md.
-- [ ] Os commits seguem Conventional Commits e têm `Signed-off-by` do autor humano.
+- [ ] Os commits seguem Conventional Commits e, em contribuição externa, têm `Signed-off-by` do autor humano.
 - [ ] Sem emoji e sem travessão nos arquivos alterados.
 - [ ] Afirmações com fonte e link.
 - [ ] Os links foram conferidos.
