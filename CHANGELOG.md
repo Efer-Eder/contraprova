@@ -10,7 +10,7 @@ projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/)
 
 ### Adicionado
 
-- Rascunho da RFC 0001 sobre o formato do produto ([PA-01](docs/perguntas-em-aberto.md)), com as perguntas PA-16 a PA-18 que nasceram dela. É proposta em discussão, não decisão.
+- RFC 0001 sobre o formato do produto ([PA-01](docs/perguntas-em-aberto.md)), com as perguntas PA-16 a PA-18 que nasceram dela. É proposta em discussão, não decisão.
 - ADR 0008 esclarecendo o escopo do DCO: o `Signed-off-by` é exigido das contribuições externas, e os commits do mantenedor não o levam.
 - Manifesto do projeto em `docs/manifesto.md`, como fonte de verdade.
 - Especificação em `docs/especificacao/`: princípios, capacidades, critérios de aceitação, estados de decisão, modelo de ameaças, fluxo de uso, não objetivos e glossário.

@@ -1,5 +1,5 @@
 ---
-status: "rascunho"
+status: "em discussão"
 date: 2026-11-27
 author: Efer Eder
 pa: PA-01
@@ -13,7 +13,7 @@ Propomos que o Contraprova seja uma combinação em camadas com um núcleo únic
 
 Propomos também três níveis de autoridade, com nomes e divisão definidos por esta RFC: consultivo local, consultivo na esteira e protegido. O produto deve exibir sempre o nível realmente ativo, descoberto por inspeção da configuração, e nunca o nível pretendido.
 
-Esta RFC é um rascunho. Tudo o que está nela é proposta: nada disso existe, nada foi decidido, e não há prazo. Não altera o [manifesto](../manifesto.md).
+Esta RFC está em discussão pública (issue #5). Tudo o que está nela é proposta: nada disso existe, nada foi decidido, e não há prazo. Não altera o [manifesto](../manifesto.md).
 
 ## Motivação
 

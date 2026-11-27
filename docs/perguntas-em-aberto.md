@@ -33,7 +33,7 @@ Cada pergunta tem identificador estável `PA-xx`. Uma pergunta é fechada por [A
 - **Por que importa:** o formato determina se o produto consegue executar verificações reais, se há isolamento, se as políticas ficam protegidas e, portanto, se existe bloqueio técnico ou apenas orientação. A seção 28 afirma que uma skill baseada apenas em instruções pode orientar agentes, mas não constitui por si só um bloqueio técnico, e que qualquer formato precisa declarar seus limites de autoridade.
 - **O que investigar:** que verificações reais cada formato consegue executar; como cada um protege políticas e referências aprovadas contra escrita pelo agente desenvolvedor; que modo (consultivo ou protegido) cada formato permite de forma honesta; como cada um é distribuído e usado por quem não domina testes.
 - **Critérios do manifesto (seção 28):** capacidade de executar verificações reais, isolamento, proteção de políticas, facilidade de uso, portabilidade e custo.
-- **Proposta em discussão:** [RFC 0001](rfcs/0001-formato-do-produto.md) (rascunho).
+- **Proposta em discussão:** [RFC 0001](rfcs/0001-formato-do-produto.md) (em discussão).
 - **Status:** aberta.
 
 ## PA-02 Linguagens
