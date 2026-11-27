@@ -17,3 +17,5 @@
 /.claude/ @Efer-Eder
 /.agents/ @Efer-Eder
 /scripts/ @Efer-Eder
+/site/ @Efer-Eder
+/deploy/ @Efer-Eder

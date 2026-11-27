@@ -36,6 +36,10 @@ Os quadrantes de tutoriais e de guias de uso do produto ficarão vazios até exi
 - [especificacao/nao-objetivos.md](especificacao/nao-objetivos.md): o que o projeto não é.
 - [especificacao/glossario.md](especificacao/glossario.md): termos do manifesto.
 
+### Página do projeto
+
+- [publicar-pagina.md](publicar-pagina.md): como a página pública em `site/` é mantida e publicada.
+
 ### Decisões e processo
 
 - [adr/README.md](adr/README.md): como funcionam os ADRs, estados e índice.
