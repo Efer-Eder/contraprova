@@ -1,5 +1,17 @@
 # Progresso
 
+## 2026-11-27: RFC 0001 (formato do produto) em discussão
+
+### O que foi feito
+
+- [RFC 0001](docs/rfcs/0001-formato-do-produto.md) sobre o formato do produto ([PA-01](docs/perguntas-em-aberto.md)), na branch `rfc/0001-product-format`. Propõe uma combinação em camadas com um motor único e três níveis de autoridade (consultivo local, consultivo na esteira e protegido). É proposta, não decisão: a PA-01 continua aberta.
+- Três perguntas novas nascidas da RFC em `docs/perguntas-em-aberto.md`: PA-16, PA-17 e PA-18. Índice de RFCs e `CHANGELOG.md` atualizados.
+
+### O que NÃO foi verificado
+
+- Nenhuma das ferramentas e plataformas citadas na RFC foi executada. O que se diz delas vem da documentação oficial lida em 2026-11-27.
+- A RFC ainda não passou por discussão pública nem por revisão de outra pessoa. A issue #5 e o PR abriram em 2026-11-27, e o período mínimo de 7 dias corridos termina em 2026-12-04 (não mesclar antes).
+
 ## 2026-11-27: escopo do DCO
 
 ### O que foi feito

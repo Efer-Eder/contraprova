@@ -55,6 +55,7 @@ Os quadrantes de tutoriais e de guias de uso do produto ficarão vazios até exi
 - [adr/0008-escopo-do-dco.md](adr/0008-escopo-do-dco.md)
 - [rfcs/README.md](rfcs/README.md): processo de RFC.
 - [rfcs/0000-modelo.md](rfcs/0000-modelo.md): modelo de RFC.
+- [rfcs/0001-formato-do-produto.md](rfcs/0001-formato-do-produto.md): RFC em discussão sobre o formato do produto (PA-01).
 
 ### Pesquisa
 
