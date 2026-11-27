@@ -1,0 +1,2 @@
+# O Aider não carrega arquivos de instruções sozinho: AGENTS.md entra como convenção somente leitura.
+read: AGENTS.md
