@@ -12,7 +12,7 @@ Instruções para qualquer agente de IA que trabalhe neste repositório. Esta é
 
 O Contraprova é uma proposta de camada independente de verificação para software feito com IA. Lema: "Desenvolva com IA. Valide com evidências."
 
-- Fase atual: **especificação**. O repositório contém só Markdown, YAML, JSON, configuração e scripts de manutenção do próprio repositório em `scripts/`. Esses scripts são permitidos e não são código do produto.
+- Fase atual: **especificação**. O repositório contém só Markdown, YAML, JSON, configuração e scripts de manutenção do próprio repositório em `scripts/`. Esses scripts são permitidos e não são código do produto. O mesmo vale para `site/` (página pública do projeto) e `deploy/` (publicação dessa página): são manutenção do projeto, não código do produto.
 - Não existe código, build, teste automatizado nem comando de instalação do produto. Formato, linguagem e arquitetura estão em aberto.
 - Não crie código do produto, scaffolding, `package.json`, `pyproject.toml`, Dockerfile nem escolha de stack antes de as perguntas de formato (PA-01 a PA-08) serem respondidas por RFC aceita.
 - Não invente comandos de instalação ou uso do Contraprova. Eles não existem.
