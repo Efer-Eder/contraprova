@@ -166,7 +166,7 @@ Cada pergunta tem identificador estável `PA-xx`. Uma pergunta é fechada por [A
 ## PA-18 Operação e custo da infraestrutura do nível protegido
 
 - **Pergunta:** quem opera e paga a infraestrutura necessária ao nível protegido, como um GitHub App, e qual é a infraestrutura mínima?
-- **Por que importa:** a [RFC 0001](rfcs/0001-formato-do-produto.md) propõe que fixar a fonte esperada de um check exija um App, o que traz hospedagem, credenciais e responsabilidade operacional, e o custo é um dos critérios da seção 28.
+- **Por que importa:** a [RFC 0001](rfcs/0001-formato-do-produto.md) registra que o caminho documentado para fixar a fonte esperada de um check passa por um GitHub App, e que o nível protegido provavelmente exige um, o que traz hospedagem, credenciais e responsabilidade operacional; o custo é um dos critérios da seção 28.
 - **O que investigar:** modelos em que cada usuário opera o próprio App ou o projeto opera um serviço; que dados o App enxerga (privilégio mínimo e privacidade, seção 13); o que acontece com quem não pode ou não quer operar um App.
 - **Critérios do manifesto:** custo e facilidade de uso (seção 28, no conjunto de PA-01) e privacidade (seção 13).
 - **Status:** aberta.

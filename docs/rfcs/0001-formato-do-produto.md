@@ -196,13 +196,13 @@ A evidência virá dos cenários de autoavaliação da seção 23 do manifesto: 
 - **[CA-14](../especificacao/criterios-de-aceitacao.md), ambiente sem autoridade de bloqueio:** o nível exibido deve ser consultivo quando a configuração não dá autoridade, o que testa a regra de exibição e a inspeção da configuração.
 - **[CA-15](../especificacao/criterios-de-aceitacao.md), tentativa de alterar política protegida:** um PR que altera política, workflow ou referência deve ser rejeitado ou detectado conforme o nível, o que testa a separação do nível 3.
 
-Esses cenários exigem projetos de teste e, para o nível 3, um repositório configurado de verdade, o que também não existe. A verificação da seção 28 sobre custo e facilidade de uso só poderá ser feita depois de protótipos, e sem metas numéricas antes dos experimentos ([PA-11](../perguntas-em-aberto.md)).
+Esses cenários exigem projetos de teste e, para o nível 3, um repositório configurado de verdade, o que também não existe. A avaliação dos critérios de custo e facilidade de uso da seção 28 só poderá ser feita depois de protótipos, e sem metas numéricas antes dos experimentos ([PA-11](../perguntas-em-aberto.md)).
 
 ## Perguntas não resolvidas
 
-Todas continuam sem resposta. As três primeiras do bloco seguinte viram novas entradas em [perguntas-em-aberto.md](../perguntas-em-aberto.md) (PA-16, PA-17 e PA-18); as demais ficam aqui.
+Todas continuam sem resposta. Três delas foram registradas em [perguntas-em-aberto.md](../perguntas-em-aberto.md) como PA-16, PA-17 e PA-18; as demais ficam aqui.
 
-Viraram perguntas em aberto:
+Registradas como perguntas em aberto:
 
 - **Como o produto descobre e exibe o nível de autoridade realmente ativo, e como detecta e avisa a remoção da proteção por um administrador** ([PA-16](../perguntas-em-aberto.md)).
 - **Como isolar código não confiável em PR de branch interna**, o caso típico de agente, que não tem a proteção de fork ([PA-17](../perguntas-em-aberto.md)).
