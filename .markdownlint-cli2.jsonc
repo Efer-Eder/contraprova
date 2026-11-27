@@ -1,0 +1,19 @@
+{
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD060": false,
+    "MD033": {
+      "allowed_elements": ["details", "summary", "br", "img", "p", "a"]
+    },
+    "MD024": {
+      "siblings_only": true
+    }
+  },
+  "ignores": [
+    "docs/manifesto.md",
+    "CODE_OF_CONDUCT.md",
+    "CLAUDE.md",
+    "node_modules"
+  ]
+}

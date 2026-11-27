@@ -1,0 +1,11 @@
+# Verificação de links (lychee)
+# Páginas que exigem login ou que só existem depois da primeira publicação.
+exclude = [
+  '^https://github\.com/Efer-Eder/contraprova/(security|discussions|issues|pulls|compare|commits)',
+]
+
+# 429 (limite de requisições) não indica link quebrado.
+accept = [200, 429]
+
+max_retries = 2
+timeout = 20

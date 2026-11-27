@@ -1,0 +1,28 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editores
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# Segredos e ambiente
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Dependências e artefatos de build
+node_modules/
+dist/
+coverage/
+
+# Configuração local de agentes e notas pessoais
+.claude/settings.local.json
+CLAUDE.local.md
+.obsidian/
