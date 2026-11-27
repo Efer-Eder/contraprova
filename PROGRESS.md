@@ -1,5 +1,27 @@
 # Progresso
 
+## 2026-11-27: repositório público e proteção da main
+
+### O que passou a ser verdade
+
+- Repositório público criado em `github.com/Efer-Eder/contraprova`, com histórico em commits pequenos e licença MIT detectada pelo GitHub.
+- Workflows executados no GitHub: `markdownlint`, `links`, `estilo` e `adaptadores` (Docs), `gitleaks` (Secret scan) e Scorecard terminaram verdes no commit `b5b2bb0`.
+- Ruleset "Proteger main" ativo: bloqueia exclusão e push forçado, exige PR (0 aprovações, há um só mantenedor) e os checks `markdownlint`, `links`, `estilo`, `adaptadores` e `gitleaks`.
+- Relato privado de vulnerabilidades, alertas do Dependabot, secret scanning com push protection e Discussions ativos; wiki desativada; só squash merge, com exclusão automática da branch.
+- Rótulos de `.github/labels.yml` criados no repositório; os padrão do GitHub foram removidos.
+
+### Falhas encontradas e corrigidas
+
+- A primeira execução do `gitleaks` falhou porque o evento de push inicial não tinha commit anterior para montar o intervalo; a execução seguinte passou. Não foi alterada nenhuma regra.
+- O `links` falhou com 504 do github.com em três URLs que respondem 200 por `curl`. Aumentei as tentativas e passei o `GITHUB_TOKEN`; como o erro persistiu só na CI, excluí em `lychee.toml` exatamente essas três URLs (o perfil `Efer-Eder`, `ghostty-org/ghostty` `AI_POLICY.md` e `ossf/scorecard` `docs/checks.md`). Elas deixam de ser verificadas automaticamente.
+- A descrição do rótulo `good first issue` passava de 100 caracteres e foi encurtada em `labels.yml` e no `CONTRIBUTING.md`.
+
+### O que NÃO foi verificado
+
+- A busca do nome em bases de marcas e de domínios segue pendente.
+- Não foi verificado que as três URLs excluídas do `lychee.toml` continuam no ar com o tempo.
+- O comportamento da proteção com PR de contribuidor externo não foi testado.
+
 ## 2026-11-27: Etapa 0, base do repositório
 
 ### O que foi feito
@@ -23,15 +45,15 @@
 ### O que NÃO foi feito nem verificado
 
 - Não existe código, pacote, comando nem serviço.
-- Os workflows ainda não rodaram no GitHub: não foi verificado se o lint de Markdown, a verificação de links, a checagem de estilo, a varredura de segredos e o Scorecard passam lá.
+- O Scorecard rodou com sucesso no GitHub, mas a nota e os alertas dele não foram analisados.
 - O lint de Markdown roda limpo localmente: `npx --yes markdownlint-cli2 "**/*.md"` terminou com 0 erros em 2026-11-27.
 - Os links relativos entre os arquivos foram conferidos por um script local em 2026-11-27 (0 quebrados). A verificação de links externos não foi executada localmente.
 - A busca do nome Contraprova em bases de marcas (INPI, WIPO) e de domínios está pendente; a disponibilidade foi conferida só em npm, PyPI, crates.io e na busca de repositórios do GitHub.
 - Os números do estudo citado na política de IA (arXiv:2605.16706) foram lidos no resumo do artigo, em <https://arxiv.org/abs/2605.16706>, em 2026-11-27; o artigo completo não foi lido nem reanalisado.
-- A proteção da `main`, o relato privado de vulnerabilidades e as Discussions precisam ser ativados no GitHub; não foi confirmado que estão ativos.
 - Nenhuma ferramenta de agente foi executada contra o repositório. A matriz de compatibilidade reflete a documentação oficial lida em 2026-11-27, e algumas leituras estão marcadas como não confirmadas (Codex cloud, Cursor Cloud Agents, Cline, Trae, caminho do settings do Qwen Code, e `AGENTS.md` no Amazon Q, Continue e JetBrains AI Assistant).
-- O job `adaptadores` da CI ainda não rodou no GitHub; o script foi testado só localmente.
+- Nenhum PR de pessoa externa passou pela proteção da `main` ainda; o único teste é o PR que registrou este estado.
+- O `DCO` não é verificado por automação (ADR 0002); o modelo de PR pede `Signed-off-by`, mas os commits iniciais do mantenedor não o têm.
 
 ### Próximo passo
 
-Publicar o repositório com a `main` protegida, conferir os workflows, e abrir as primeiras RFCs sobre as perguntas em aberto, começando pelo formato do produto.
+Abrir as primeiras RFCs sobre as perguntas em aberto, começando pelo formato do produto.
