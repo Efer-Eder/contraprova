@@ -7,7 +7,7 @@
 
 > Never trust an AI just because it says your code works. Demand proof.
 
-[Português](README.md) · [Manifesto](docs/manifesto.md) · [Documentation](docs/README.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
+[Português](README.md) · [Manifesto](docs/manifesto.md) · [Documentation](docs/README.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md) · [Project page (pt-BR)](https://efer.online/projeto/contraprova/)
 
 The detailed documentation is written in Brazilian Portuguese (see [ADR 0001](docs/adr/0001-idioma-da-documentacao-e-dos-commits.md)). This README is an English version of [README.md](README.md). Commits and branches are in English.
 

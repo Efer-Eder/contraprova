@@ -24,7 +24,7 @@ projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/)
 - Automações de repositório em `.github/`: templates de issue e PR, lint de documentação, verificação de links, varredura de segredos, Scorecard, `CODEOWNERS` e `dependabot.yml`.
 - Licença MIT (provisória), `README.md` e `README.en.md`, `ROADMAP.md` e `PROGRESS.md`.
 - Configuração de repositório: `.gitignore`, `.gitattributes`, `.editorconfig`, `.markdownlint-cli2.jsonc` e `lychee.toml`.
-- Página pública do projeto em `site/` (arquivo estático, sem build), com os scripts de publicação em `deploy/` e o guia `docs/publicar-pagina.md`.
+- Página pública do projeto em `site/` (arquivo estático, sem build), com os scripts de publicação em `deploy/` e o guia `docs/publicar-pagina.md`. A página está no ar em `https://efer.online/projeto/contraprova/` e é citada nos READMEs.
 - Repositório público no GitHub com proteção da `main`, relato privado de vulnerabilidades, Discussions e rótulos configurados.
 
 [Unreleased]: https://github.com/Efer-Eder/contraprova/commits/main
