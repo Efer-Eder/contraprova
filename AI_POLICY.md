@@ -24,10 +24,10 @@ A exigência de **divulgar o uso de IA** vale para contribuições externas, ist
 - **Humano responsável.** Uma pessoa lê, entende, edita e assume o conteúdo antes de enviar. Você é o autor.
 - **Entendimento.** Você precisa saber explicar e defender cada parte da mudança nas revisões, sem delegar a resposta à IA.
 - **Divulgação (contribuições externas).** Se você não é mantenedor, informe na descrição do PR e nos formulários de issue que usou IA, qual ferramenta e em que extensão (veja [como divulgar](#como-divulgar)). Mantenedores estão isentos desta exigência; todas as outras regras desta política valem para eles também.
-- **Direito de contribuir.** Você precisa ter o direito de contribuir o conteúdo sob a licença do projeto, e certificar isso pelo DCO (`git commit -s`). Não envie conteúdo copiado de fontes cuja licença você desconhece, nem saída de IA que reproduza material protegido.
+- **Direito de contribuir.** Você precisa ter o direito de contribuir o conteúdo sob a licença do projeto, e, se a contribuição é externa, certificar isso pelo DCO (`git commit -s`). Não envie conteúdo copiado de fontes cuja licença você desconhece, nem saída de IA que reproduza material protegido.
 - **Fontes verdadeiras.** Todo link, citação, número e referência deve ter sido conferido por você. Referências inexistentes ou inventadas são um defeito grave.
 - **Evidência real.** Logs, resultados de testes, saídas de comandos e capturas apresentados como evidência devem ter sido produzidos de fato. Nunca invente ou "reconstitua" evidências.
-- **Assinatura humana.** O `Signed-off-by` é de uma pessoa, que certifica o DCO.
+- **Assinatura humana.** O `Signed-off-by`, exigido das contribuições externas, é de uma pessoa, que certifica o DCO.
 
 ## O que não é aceito
 
@@ -65,7 +65,7 @@ Um agente que trabalha neste repositório deve seguir [AGENTS.md](AGENTS.md) e [
 
 ## Signed-off-by
 
-O `Signed-off-by` do [DCO 1.1](https://developercertificate.org/) é uma certificação feita por uma pessoa de que ela tem o direito de contribuir. **Agentes de IA não adicionam `Signed-off-by`.** A pessoa que revisou e assume a contribuição assina com `git commit -s`, depois de conferir o conteúdo. Um commit com `Signed-off-by` de um agente é tratado como não certificado.
+O `Signed-off-by` do [DCO 1.1](https://developercertificate.org/) é uma certificação feita por uma pessoa de que ela tem o direito de contribuir, e é exigido das contribuições externas; os commits do mantenedor não o levam ([ADR-0008](docs/adr/0008-escopo-do-dco.md)). **Agentes de IA nunca adicionam `Signed-off-by`.** A pessoa que revisou e assume a contribuição assina com `git commit -s`, depois de conferir o conteúdo. Um commit com `Signed-off-by` de um agente é tratado como não certificado.
 
 ## Contribuições de baixa qualidade
 

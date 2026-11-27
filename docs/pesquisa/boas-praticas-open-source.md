@@ -71,7 +71,7 @@ Não verificado: a política do Fedora não pôde ser lida (acesso bloqueado) e 
 
 Fontes: [Developer Certificate of Origin 1.1](https://developercertificate.org/), [comparação entre DCO e CLA](https://bestpractices.linuxfoundation.org/ip/contribution-mechanisms.html).
 
-Adotado: DCO 1.1 com `Signed-off-by`, sem CLA ([ADR-0002](../adr/0002-licenca-mit-provisoria-e-dco.md)). A licença MIT é provisória e exige revisão antes da primeira versão que contenha código ([PA-09](../perguntas-em-aberto.md)).
+Adotado: DCO 1.1 com `Signed-off-by` nas contribuições externas, sem CLA e sem assinatura nos commits do mantenedor ([ADR-0002](../adr/0002-licenca-mit-provisoria-e-dco.md), [ADR-0008](../adr/0008-escopo-do-dco.md)). A licença MIT é provisória e exige revisão antes da primeira versão que contenha código ([PA-09](../perguntas-em-aberto.md)).
 
 ## Segurança do repositório e dos fluxos de trabalho
 

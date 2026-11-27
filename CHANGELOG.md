@@ -10,6 +10,7 @@ projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/)
 
 ### Adicionado
 
+- ADR 0008 esclarecendo o escopo do DCO: o `Signed-off-by` é exigido das contribuições externas, e os commits do mantenedor não o levam.
 - Manifesto do projeto em `docs/manifesto.md`, como fonte de verdade.
 - Especificação em `docs/especificacao/`: princípios, capacidades, critérios de aceitação, estados de decisão, modelo de ameaças, fluxo de uso, não objetivos e glossário.
 - Perguntas em aberto em `docs/perguntas-em-aberto.md`.

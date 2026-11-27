@@ -51,3 +51,4 @@ Um ADR aceito não é editado para mudar a decisão. Se a decisão mudar, escrev
 | [0005](0005-documentacao-antes-do-codigo.md) | Documentação antes do código | aceita | 2026-11-27 |
 | [0006](0006-agents-md-como-fonte-unica-para-agentes.md) | AGENTS.md como fonte única de instruções para agentes | aceita | 2026-11-27 |
 | [0007](0007-versionamento-semantico-e-changelog.md) | Versionamento semântico e changelog | aceita | 2026-11-27 |
+| [0008](0008-escopo-do-dco.md) | Escopo do DCO: exigido das contribuições externas | aceita | 2026-11-27 |

@@ -1,5 +1,16 @@
 # Progresso
 
+## 2026-11-27: escopo do DCO
+
+### O que foi feito
+
+- ADR 0008 esclarece que o DCO (`Signed-off-by`, `git commit -s`) é exigido das contribuições externas. Os commits do mantenedor não o levam: ele é o titular do copyright e licencia o próprio trabalho diretamente pela licença do projeto.
+- `CONTRIBUTING.md`, `AI_POLICY.md`, o modelo de PR, os dois READMEs e a pesquisa de boas práticas foram ajustados para dizer o mesmo. O ADR 0002 ficou como estava, com uma linha de referência cruzada. Agentes continuam sem adicionar `Signed-off-by`.
+
+### O que NÃO foi verificado
+
+- O DCO continua sem verificação automatizada; nenhuma contribuição externa passou pelo fluxo ainda.
+
 ## 2026-11-27: página pública do projeto
 
 ### O que foi feito
@@ -65,7 +76,7 @@
 - Os números do estudo citado na política de IA (arXiv:2605.16706) foram lidos no resumo do artigo, em <https://arxiv.org/abs/2605.16706>, em 2026-11-27; o artigo completo não foi lido nem reanalisado.
 - Nenhuma ferramenta de agente foi executada contra o repositório. A matriz de compatibilidade reflete a documentação oficial lida em 2026-11-27, e algumas leituras estão marcadas como não confirmadas (Codex cloud, Cursor Cloud Agents, Cline, Trae, caminho do settings do Qwen Code, e `AGENTS.md` no Amazon Q, Continue e JetBrains AI Assistant).
 - Nenhum PR de pessoa externa passou pela proteção da `main` ainda; o único teste é o PR que registrou este estado.
-- O `DCO` não é verificado por automação (ADR 0002); o modelo de PR pede `Signed-off-by`, mas os commits iniciais do mantenedor não o têm.
+- O `DCO` não é verificado por automação (ADR 0002); o modelo de PR pede `Signed-off-by` só em contribuição externa, e os commits do mantenedor não o têm (ADR 0008).
 
 ### Próximo passo
 
