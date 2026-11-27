@@ -2,6 +2,11 @@
 # Páginas que exigem login ou que só existem depois da primeira publicação.
 exclude = [
   '^https://github\.com/Efer-Eder/contraprova/(security|discussions|issues|pulls|compare|commits)',
+  # Estas três URLs existem (confirmado com curl, HTTP 200), mas o github.com devolve
+  # 504 de forma persistente quando o acesso vem do verificador automático na CI.
+  '^https://github\.com/Efer-Eder/?$',
+  '^https://github\.com/ghostty-org/ghostty/blob/main/AI_POLICY\.md$',
+  '^https://github\.com/ossf/scorecard/blob/main/docs/checks\.md$',
 ]
 
 # 429 (limite de requisições) não indica link quebrado.
