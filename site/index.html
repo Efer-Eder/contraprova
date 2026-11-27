@@ -1,0 +1,1950 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contraprova · efer.online</title>
+    <meta
+      name="description"
+      content="Proposta open source de uma camada independente de verificação para software feito com IA. Desenvolva com IA. Valide com evidências. Em fase de especificação: ainda não há software para instalar."
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contraprova" />
+    <meta
+      property="og:description"
+      content="Desenvolva com IA. Valide com evidências. Projeto open source em fase de especificação, sem software para instalar ainda."
+    />
+    <meta property="og:url" content="https://efer.online/projeto/contraprova/" />
+    <meta property="og:locale" content="pt_BR" />
+    <link rel="canonical" href="https://efer.online/projeto/contraprova/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237377F0'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+    />
+    <style>
+      :root {
+        --bg: #0b0c0e;
+        --surface-1: #111215;
+        --surface-2: #16171b;
+        --surface-3: #1c1d22;
+        --surface-hover: rgba(255, 255, 255, 0.035);
+        --border: rgba(255, 255, 255, 0.08);
+        --border-subtle: rgba(255, 255, 255, 0.05);
+        --border-strong: rgba(255, 255, 255, 0.14);
+        --text-1: #edeef0;
+        --text-2: #a0a3ab;
+        --text-3: #6c707a;
+        --accent: #7377f0;
+        --accent-hover: #8487f3;
+        --accent-subtle: rgba(115, 119, 240, 0.14);
+        --accent-text: #a9abf7;
+        --success: #4cb782;
+        --warning: #d9a54a;
+        --danger: #e0646a;
+        --info: #5e9edb;
+        --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px rgba(115, 119, 240, 0.65);
+        --mono: 'Geist Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 72px;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-1);
+        font:
+          400 14px/22px 'Geist',
+          Inter,
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      p a,
+      li a,
+      .note a,
+      details a {
+        color: var(--accent-text);
+        text-underline-offset: 3px;
+      }
+      :focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+        border-radius: 4px;
+      }
+      .skip {
+        position: absolute;
+        left: -9999px;
+      }
+      .skip:focus {
+        left: 16px;
+        top: 12px;
+        z-index: 20;
+        background: var(--surface-2);
+        padding: 8px 12px;
+        border-radius: 8px;
+      }
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      svg.i {
+        width: 16px;
+        height: 16px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex: none;
+      }
+      .mono {
+        font-family: var(--mono);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* nav */
+      header.nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(11, 12, 14, 0.8);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+      }
+      header.nav .wrap {
+        height: 56px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .mark {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .mark::after {
+        content: '';
+        position: absolute;
+        right: 4px;
+        bottom: 4px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .crumb {
+        color: var(--text-3);
+        font-size: 13px;
+      }
+      .crumb b {
+        color: var(--text-2);
+        font-weight: 500;
+      }
+      .nav-links {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .nav-links a {
+        color: var(--text-2);
+        text-decoration: none;
+      }
+      .nav-links a:hover {
+        color: var(--text-1);
+      }
+      .nav-links a.icon-btn {
+        color: var(--text-1);
+      }
+      .icon-btn {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+      }
+
+      /* buttons, badges */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1;
+        text-decoration: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition:
+          background 120ms,
+          border-color 120ms,
+          color 120ms;
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+      .btn.primary {
+        background: #5a5ee0;
+        color: #fff;
+      }
+      .btn.primary:hover {
+        background: #6266e0;
+      }
+      .btn.secondary {
+        background: var(--surface-2);
+        border-color: var(--border-strong);
+        color: var(--text-1);
+      }
+      .btn.secondary:hover {
+        background: #1d1e23;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 20px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font: 500 12px/16px var(--mono);
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        color: var(--text-2);
+      }
+      .badge.warn {
+        background: rgba(217, 165, 74, 0.14);
+        border-color: transparent;
+        color: var(--warning);
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      /* hero */
+      .hero {
+        padding: 96px 0 0;
+      }
+      .eyebrow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 52px;
+        line-height: 56px;
+        letter-spacing: -0.035em;
+        font-weight: 600;
+      }
+      .motto {
+        margin: 12px 0 0;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: -0.02em;
+        font-weight: 500;
+        color: var(--accent-text);
+      }
+      .lead {
+        max-width: 720px;
+        margin: 20px 0 0;
+        font-size: 17px;
+        line-height: 28px;
+        letter-spacing: -0.005em;
+        color: var(--text-2);
+      }
+      .lead strong {
+        color: var(--text-1);
+        font-weight: 500;
+      }
+      .status {
+        max-width: 720px;
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 16px 1fr;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(217, 165, 74, 0.35);
+        background: rgba(217, 165, 74, 0.08);
+        color: var(--text-2);
+      }
+      .status svg {
+        color: var(--warning);
+        margin-top: 3px;
+      }
+      .status b {
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+      }
+      .index {
+        margin-top: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 20px;
+        font: 400 12px/16px var(--mono);
+        color: var(--text-3);
+      }
+
+      /* sections */
+      section {
+        padding: 96px 0 0;
+      }
+      .sec-head {
+        max-width: 720px;
+        margin-bottom: 24px;
+      }
+      .eyebrow-mono {
+        font: 500 12px/16px var(--mono);
+        color: var(--text-3);
+        letter-spacing: 0.02em;
+      }
+      h2 {
+        margin: 8px 0 0;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+      }
+      .sec-head p {
+        margin: 8px 0 0;
+        color: var(--text-2);
+      }
+      .grid2,
+      .grid3,
+      .grid4 {
+        display: grid;
+        gap: 12px;
+      }
+      .grid2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .grid4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .card {
+        background: var(--surface-1);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        min-width: 0;
+      }
+      .card h3 {
+        margin: 0;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card p {
+        margin: 8px 0 0;
+        color: var(--text-2);
+      }
+      .tile-icon {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        color: var(--text-2);
+        margin-bottom: 16px;
+      }
+      .note {
+        margin-top: 12px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        color: var(--text-2);
+        font-size: 13px;
+        line-height: 20px;
+      }
+      .note b {
+        color: var(--text-1);
+        font-weight: 500;
+      }
+      ul.list {
+        list-style: none;
+        margin: 12px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+      ul.list li {
+        display: grid;
+        grid-template-columns: 16px 1fr;
+        gap: 10px;
+        color: var(--text-2);
+      }
+      ul.list li svg {
+        margin-top: 3px;
+      }
+      ul.list.ok svg {
+        color: var(--success);
+      }
+      ul.list.no svg {
+        color: var(--text-3);
+      }
+      ul.list li b {
+        color: var(--text-1);
+        font-weight: 500;
+      }
+
+      /* illustration table */
+      .ill {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--surface-1);
+        padding: 8px;
+      }
+      .ill-bar {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        font: 500 12px/1 var(--mono);
+        color: var(--text-3);
+      }
+      .ill-bar .chip {
+        margin-left: auto;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 3px 6px;
+        font-size: 11px;
+      }
+      .ill-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr) 168px;
+        gap: 16px;
+        align-items: center;
+        padding: 14px 16px;
+        border-radius: 8px;
+        background: var(--surface-2);
+        margin-top: 4px;
+      }
+      .ill-row small {
+        display: block;
+        font: 500 11px/16px var(--mono);
+        color: var(--text-3);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .ill-row span.t {
+        color: var(--text-1);
+      }
+      .state {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 24px;
+        padding: 0 10px;
+        border-radius: 4px;
+        font: 500 12px/1 var(--mono);
+        justify-self: start;
+      }
+      .state.ok {
+        color: var(--success);
+        background: rgba(76, 183, 130, 0.14);
+      }
+      .state.block {
+        color: var(--danger);
+        background: rgba(224, 100, 106, 0.14);
+      }
+      .state.unk {
+        color: var(--warning);
+        background: rgba(217, 165, 74, 0.14);
+      }
+      .state.exc {
+        color: var(--info);
+        background: rgba(94, 158, 219, 0.14);
+      }
+      .state-card h3 {
+        margin-bottom: 4px;
+      }
+
+      /* principles */
+      .pr {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 4px 12px;
+        padding: 16px 0;
+        border-top: 1px solid var(--border);
+      }
+      .pr .n {
+        font: 500 12px/22px var(--mono);
+        color: var(--text-3);
+      }
+      .pr b {
+        font-weight: 600;
+      }
+      .pr span.d {
+        grid-column: 2;
+        color: var(--text-2);
+        font-size: 13px;
+        line-height: 20px;
+      }
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0 32px;
+      }
+
+      /* stages */
+      .stages {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        counter-reset: s;
+      }
+      .stage {
+        background: var(--surface-1);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+      }
+      .stage .n {
+        font: 500 12px/16px var(--mono);
+        color: var(--text-3);
+      }
+      .stage h3 {
+        margin: 12px 0 0;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 600;
+      }
+      .stage p {
+        margin: 6px 0 0;
+        color: var(--text-2);
+        font-size: 13px;
+        line-height: 20px;
+      }
+
+      /* agents */
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .chip-t {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        color: var(--text-1);
+        font-size: 13px;
+      }
+      .chip-t.off {
+        color: var(--text-2);
+        border-style: dashed;
+        border-color: var(--border-strong);
+      }
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .steps {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 12px;
+        counter-reset: p;
+      }
+      .steps li {
+        counter-increment: p;
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        color: var(--text-2);
+      }
+      .steps li::before {
+        content: counter(p);
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        font: 500 12px/1 var(--mono);
+        color: var(--text-2);
+      }
+      .steps li b {
+        color: var(--text-1);
+        font-weight: 500;
+      }
+
+      /* faq */
+      .faq {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--surface-1);
+        overflow: hidden;
+      }
+      .faq-i + .faq-i {
+        border-top: 1px solid var(--border-subtle);
+      }
+      .faq-i summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 20px;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        transition: background 120ms;
+      }
+      .faq-i summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq-i summary:hover {
+        background: var(--surface-hover);
+      }
+      .faq-i summary:focus-visible {
+        box-shadow: inset var(--focus-ring);
+      }
+      .faq-ic {
+        position: relative;
+        width: 12px;
+        height: 12px;
+        flex: none;
+      }
+      .faq-ic::before,
+      .faq-ic::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 12px;
+        height: 1.5px;
+        border-radius: 1px;
+        background: var(--text-3);
+        transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .faq-ic::after {
+        transform: rotate(90deg);
+      }
+      .faq-i[open] .faq-ic::after {
+        transform: rotate(0);
+      }
+      .faq-i p {
+        margin: 0;
+        padding: 0 20px 18px;
+        color: var(--text-2);
+        max-width: 720px;
+      }
+
+      footer {
+        margin-top: 96px;
+        border-top: 1px solid var(--border);
+      }
+      footer .wrap {
+        min-height: 64px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 24px;
+        font-size: 13px;
+        color: var(--text-3);
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+      footer a {
+        color: var(--text-2);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--text-1);
+      }
+      footer .sp {
+        flex: 1;
+      }
+
+      /* github live card */
+      .gh {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .gh-stats {
+        grid-column: span 12;
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        padding: 0 !important;
+        overflow: hidden;
+      }
+      .gh-stat {
+        padding: 20px 24px;
+        border-right: 1px solid var(--border-subtle);
+        text-decoration: none;
+        transition: background 120ms;
+      }
+      .gh-stat:last-child {
+        border-right: 0;
+      }
+      a.gh-stat:hover {
+        background: var(--surface-hover);
+      }
+      .gh-stat .k {
+        font: 500 12px/16px var(--mono);
+        color: var(--text-3);
+      }
+      .gh-stat .v {
+        margin-top: 8px;
+        font: 500 24px/32px var(--mono);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.02em;
+      }
+      .gh-stat .s {
+        margin-top: 2px;
+        font-size: 12px;
+        color: var(--text-3);
+      }
+      .gh-commits {
+        grid-column: span 7;
+      }
+      .gh-side {
+        grid-column: span 5;
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+      .gh-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .gh-head h3 {
+        margin: 0;
+      }
+      .gh-head a {
+        margin-left: auto;
+        font: 500 12px/16px var(--mono);
+        color: var(--text-3);
+        text-decoration: none;
+      }
+      .gh-head a:hover {
+        color: var(--text-1);
+      }
+      .gh-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .gh-list li {
+        border-top: 1px solid var(--border-subtle);
+      }
+      .gh-list li:first-child {
+        border-top: 0;
+      }
+      .gh-row {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: baseline;
+        padding: 10px 0;
+        text-decoration: none;
+        color: var(--text-2);
+      }
+      .gh-row:hover .msg {
+        color: var(--text-1);
+      }
+      .gh-row .sha {
+        font: 400 12px/20px var(--mono);
+        color: var(--accent-text);
+      }
+      .gh-row .msg {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: var(--text-1);
+      }
+      .gh-row .msg em {
+        font-style: normal;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-2);
+        margin-right: 6px;
+      }
+      .gh-row time {
+        font: 400 12px/20px var(--mono);
+        color: var(--text-2);
+        white-space: nowrap;
+      }
+      .gh-people {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .gh-person {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 32px;
+        padding: 0 10px 0 4px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        text-decoration: none;
+        font-size: 13px;
+      }
+      .gh-person img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+      .gh-person span {
+        font: 400 12px/1 var(--mono);
+        color: var(--text-2);
+      }
+      .gh-langs {
+        display: flex;
+        height: 8px;
+        border-radius: 2px;
+        overflow: hidden;
+        gap: 2px;
+        margin-bottom: 12px;
+      }
+      .gh-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+        font: 400 12px/16px var(--mono);
+        color: var(--text-2);
+      }
+      .gh-legend i {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        margin-right: 6px;
+      }
+      .ci-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--text-3);
+      }
+      .ci-dot.success {
+        background: var(--success);
+      }
+      .ci-dot.failure {
+        background: var(--danger);
+      }
+      .ci-dot.running {
+        background: var(--warning);
+      }
+      .gh-empty {
+        color: var(--text-2);
+        font-size: 13px;
+        padding: 6px 0;
+      }
+      .skel {
+        display: inline-block;
+        height: 12px;
+        width: 60%;
+        border-radius: 2px;
+        background: var(--surface-3);
+      }
+      .gh-foot {
+        grid-column: span 12;
+        font: 400 12px/16px var(--mono);
+        color: var(--text-2);
+      }
+
+      @media (max-width: 1023px) {
+        .gh-stats {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .gh-stat:nth-child(3) {
+          border-right: 0;
+        }
+        .gh-stat:nth-child(-n + 3) {
+          border-bottom: 1px solid var(--border-subtle);
+        }
+        .gh-commits,
+        .gh-side {
+          grid-column: span 12;
+        }
+        .grid4,
+        .stages {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .grid3 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .principles {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 639px) {
+        .wrap {
+          padding: 0 16px;
+        }
+        .hero {
+          padding-top: 56px;
+        }
+        h1 {
+          font-size: 36px;
+          line-height: 40px;
+        }
+        .motto {
+          font-size: 20px;
+          line-height: 28px;
+        }
+        .lead {
+          font-size: 16px;
+          line-height: 26px;
+        }
+        h2 {
+          font-size: 20px;
+          line-height: 28px;
+        }
+        section {
+          padding-top: 64px;
+        }
+        footer {
+          margin-top: 64px;
+        }
+        .nav-links .anchor,
+        .crumb {
+          display: none;
+        }
+        .grid2,
+        .grid3,
+        .grid4,
+        .stages,
+        .principles {
+          grid-template-columns: 1fr;
+        }
+        .card {
+          padding: 20px;
+        }
+        .ill-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .gh-stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .gh-stat {
+          padding: 16px;
+        }
+        .gh-stat:nth-child(odd) {
+          border-right: 1px solid var(--border-subtle);
+        }
+        .gh-stat:nth-child(even) {
+          border-right: 0;
+        }
+        .gh-stat:nth-child(-n + 4) {
+          border-bottom: 1px solid var(--border-subtle);
+        }
+        .gh-row {
+          grid-template-columns: 56px minmax(0, 1fr);
+        }
+        .gh-row time {
+          display: none;
+        }
+        .faq-i summary {
+          padding: 14px 16px;
+        }
+        .faq-i p {
+          padding: 0 16px 16px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        /* o Ponto anima sempre; o resto respeita "reduzir movimento" */
+        *:not(
+            .ponto-ov,
+            .ponto-svg,
+            .ponto-svg *,
+            .ponto-say,
+            .ponto-bal,
+            .ponto-bal *,
+            .ponto-pulse,
+            .ponto-hit,
+            .ponto-inline,
+            .ponto-inline *
+          ),
+        *:not(
+            .ponto-ov,
+            .ponto-svg,
+            .ponto-svg *,
+            .ponto-say,
+            .ponto-bal,
+            .ponto-bal *,
+            .ponto-pulse,
+            .ponto-hit,
+            .ponto-inline,
+            .ponto-inline *
+          )::before,
+        *:not(
+            .ponto-ov,
+            .ponto-svg,
+            .ponto-svg *,
+            .ponto-say,
+            .ponto-bal,
+            .ponto-bal *,
+            .ponto-pulse,
+            .ponto-hit,
+            .ponto-inline,
+            .ponto-inline *
+          )::after {
+          transition-duration: 0ms !important;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script src="/ponto.js?v=8" data-companion></script>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-github" viewBox="0 0 24 24">
+          <path
+            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+          />
+          <path d="M9 18c-4.51 2-5-2-7-2" />
+        </symbol>
+        <symbol id="i-book" viewBox="0 0 24 24">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 7h10v10M7 17 17 7" /></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" /></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+          <path d="M12 9v4M12 17h.01" />
+        </symbol>
+        <symbol id="i-help" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" />
+        </symbol>
+        <symbol id="i-key" viewBox="0 0 24 24">
+          <circle cx="7.5" cy="15.5" r="5.5" />
+          <path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3" />
+        </symbol>
+        <symbol id="i-eye" viewBox="0 0 24 24">
+          <path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0" />
+          <circle cx="12" cy="12" r="3" />
+        </symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24">
+          <path
+            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+          />
+        </symbol>
+        <symbol id="i-git" viewBox="0 0 24 24">
+          <circle cx="6" cy="6" r="3" />
+          <circle cx="6" cy="18" r="3" />
+          <circle cx="18" cy="9" r="3" />
+          <path d="M6 9v6M18 12a6 6 0 0 1-6 6H9" />
+        </symbol>
+        <symbol id="i-message" viewBox="0 0 24 24">
+          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
+        </symbol>
+        <symbol id="i-file" viewBox="0 0 24 24">
+          <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" />
+          <path d="M14 2v4a2 2 0 0 0 2 2h4M10 13h4M10 17h4" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="efer.online, início"
+          ><span class="mark" aria-hidden="true" data-ponto-origin>e</span>efer.online</a
+        >
+        <span class="crumb">/ projeto / <b>contraprova</b></span>
+        <nav class="nav-links" aria-label="Seções">
+          <a class="anchor" href="#ideia">A ideia</a>
+          <a class="anchor" href="#principios">Princípios</a>
+          <a class="anchor" href="#agentes">Agentes</a>
+          <a class="anchor" href="#participar">Participar</a>
+          <a class="anchor" href="#github">GitHub</a>
+          <a
+            class="icon-btn"
+            href="https://github.com/Efer-Eder/contraprova"
+            aria-label="Repositório no GitHub"
+            ><svg class="i"><use href="#i-github" /></svg
+          ></a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <div class="wrap">
+        <div class="hero">
+          <div class="eyebrow">
+            <span class="badge">open source · MIT</span>
+            <span class="badge warn"><span class="dot"></span>fase de especificação</span>
+            <span class="badge">sem código · sem instalação</span>
+          </div>
+          <h1>Contraprova</h1>
+          <p class="motto">Desenvolva com IA. Valide com evidências.</p>
+          <p class="lead">
+            Uma proposta de <strong>camada independente de verificação</strong> para software feito
+            com ajuda de IA. A ideia central: nunca confiar em uma IA só porque ela afirma que o
+            código funciona. Exigir prova.
+          </p>
+          <div class="status" role="note">
+            <svg class="i"><use href="#i-alert" /></svg>
+            <div>
+              <b>Estado atual: em fase de especificação, ainda não há software para instalar.</b>
+              Não existe código, pacote, comando, serviço nem demo. O formato do produto (skill,
+              agente, programa, integração, serviço ou uma combinação) está em aberto e será
+              decidido por RFC. Hoje o repositório tem só texto: manifesto, especificação, decisões
+              registradas e regras de colaboração. Nada aqui é prazo ou promessa de entrega.
+            </div>
+          </div>
+          <div class="ctas">
+            <a class="btn primary" href="https://github.com/Efer-Eder/contraprova/blob/main/docs/manifesto.md"
+              ><svg class="i"><use href="#i-book" /></svg>Ler o manifesto</a
+            >
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova"
+              ><svg class="i"><use href="#i-github" /></svg>Repositório no GitHub</a
+            >
+          </div>
+          <div class="index">
+            <span>/projeto/contraprova</span>
+            <span>github.com/Efer-Eder/contraprova</span>
+          </div>
+        </div>
+
+        <section id="ideia" aria-labelledby="t-ideia">
+          <div class="sec-head">
+            <div class="eyebrow-mono">README.md · docs/manifesto.md</div>
+            <h2 id="t-ideia">O problema: o agente diz que terminou</h2>
+            <p>
+              A capacidade de construir software com IA cresceu mais rápido que a capacidade de
+              verificar a qualidade dele. Hoje dá para pedir a um agente um sistema inteiro sem
+              saber avaliar os testes que ele escreveu.
+            </p>
+          </div>
+          <div class="grid2">
+            <div class="card">
+              <h3>Verde não é o mesmo que correto</h3>
+              <ul class="list no">
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Um teste aprovado pode verificar o comportamento errado.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Um erro pode ter sido silenciado em vez de corrigido.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Uma dependência pode ter sido inventada.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Uma funcionalidade pode existir só na tela.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Um pipeline pode estar verde porque não rodou as verificações.</span>
+                </li>
+              </ul>
+              <p>
+                Isso não pressupõe má intenção: otimizar para concluir a tarefa pode produzir
+                soluções que parecem corretas sem satisfazer a necessidade original.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Por que "contraprova"</h3>
+              <p>
+                Na perícia, a contraprova é o segundo exame, independente, que confirma ou derruba
+                o primeiro. É essa a ideia: quem constrói não é quem confere, e a conclusão
+                precisa de evidência observável, não da palavra do próprio agente.
+              </p>
+              <p>
+                O projeto nasceu com o nome de trabalho VibeGuard e passou a se chamar Contraprova
+                em 2026-11-27. A busca em bases de marcas ainda está pendente.
+              </p>
+              <p>
+                O produto <b style="color: var(--text-1); font-weight: 500">não promete software sem bugs</b>.
+                Promete não confundir ausência de evidência de erro com evidência de
+                funcionamento.
+              </p>
+            </div>
+          </div>
+
+          <div class="ill" style="margin-top: 12px" aria-label="Ilustração do conceito">
+            <div class="ill-bar">
+              alegação x evidência<span class="chip">ilustração do conceito, não é saída de software</span>
+            </div>
+            <div class="ill-row">
+              <div><small>O agente disse</small><span class="t">"Todos os testes passam."</span></div>
+              <div><small>O que se verifica</small><span class="t">Os testes cobrem o critério pedido? Algum foi enfraquecido ou apagado?</span></div>
+              <span class="state unk"><span class="dot"></span>inconclusivo</span>
+            </div>
+            <div class="ill-row">
+              <div><small>O agente disse</small><span class="t">"Corrigi o bug."</span></div>
+              <div><small>O que se verifica</small><span class="t">O defeito foi reproduzido antes e deixou de ocorrer depois, sem quebrar outra coisa?</span></div>
+              <span class="state ok"><span class="dot"></span>aprovado</span>
+            </div>
+            <div class="ill-row">
+              <div><small>O agente disse</small><span class="t">"A publicação está segura."</span></div>
+              <div><small>O que se verifica</small><span class="t">A esteira roda de fato as verificações obrigatórias?</span></div>
+              <span class="state block"><span class="dot"></span>bloqueado</span>
+            </div>
+          </div>
+          <div class="note">
+            <b>Sobre a ilustração acima:</b> são exemplos inventados para explicar o conceito. O
+            Contraprova ainda não produz resultado nenhum.
+          </div>
+        </section>
+
+        <section id="o-que" aria-labelledby="t-o-que">
+          <div class="sec-head">
+            <div class="eyebrow-mono">README.md · seção 27 do manifesto</div>
+            <h2 id="t-o-que">O que ele pretende ser, e o que não é</h2>
+            <p>
+              Uma camada que separa a construção do software da verificação da qualidade, dentro da
+              autoridade técnica que realmente tiver.
+            </p>
+          </div>
+          <div class="grid2">
+            <div class="card">
+              <h3>Pretende</h3>
+              <ul class="list ok">
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Transformar a intenção de quem constrói em critérios de aceitação verificáveis.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Tratar testes, relatórios e comentários como alegações a verificar, não como fatos.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Produzir evidências independentes e detectar regressões e testes enfraquecidos.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Fiscalizar a esteira de publicação e explicar riscos em linguagem compreensível.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Impedir aprovações indevidas, quando houver integração e autoridade para isso.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Não é</h3>
+              <ul class="list no">
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Apenas um gerador de testes, revisor de código, scanner ou painel de métricas.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Uma promessa de ausência de bugs nem uma certificação automática de segurança.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Um substituto universal de especialistas.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Algo que modifica código, instala componentes, envia dados ou publica versões sem permissão.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-x" /></svg
+                  ><span>Uma acusação: o objetivo é verificar, não condenar sem evidência.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="principios" aria-labelledby="t-pr">
+          <div class="sec-head">
+            <div class="eyebrow-mono">docs/especificacao/principios.md</div>
+            <h2 id="t-pr">Os 12 princípios</h2>
+            <p>
+              Resumo. O texto completo e os critérios estão no manifesto e na especificação do
+              repositório.
+            </p>
+          </div>
+          <div class="principles">
+            <div class="pr"><span class="n">01</span><b>Desconfiança inicial</b><span class="d">Nada é verdadeiro só por existir: teste, relatório, comentário ou declaração de agente.</span></div>
+            <div class="pr"><span class="n">02</span><b>Evidência antes de opinião</b><span class="d">Resultado observado vale mais que a conclusão de um modelo.</span></div>
+            <div class="pr"><span class="n">03</span><b>Independência</b><span class="d">Quem implementa não controla sozinho os critérios de aprovação.</span></div>
+            <div class="pr"><span class="n">04</span><b>Falha segura</b><span class="d">Verificação obrigatória ausente, interrompida ou inconclusiva não equivale a sucesso.</span></div>
+            <div class="pr"><span class="n">05</span><b>Transparência</b><span class="d">Toda conclusão indica origem, escopo e limitações.</span></div>
+            <div class="pr"><span class="n">06</span><b>Não regressão</b><span class="d">Corrigir uma funcionalidade não autoriza quebrar outra.</span></div>
+            <div class="pr"><span class="n">07</span><b>Não manipulação</b><span class="d">Testes não podem ser enfraquecidos em silêncio para acomodar código incorreto.</span></div>
+            <div class="pr"><span class="n">08</span><b>Controle humano</b><span class="d">Mudança de requisito, exceção e risco aceito são explícitos.</span></div>
+            <div class="pr"><span class="n">09</span><b>Privilégio mínimo</b><span class="d">Analisar um projeto não deve exigir acesso irrestrito a produção, segredos ou contas administrativas.</span></div>
+            <div class="pr"><span class="n">10</span><b>Neutralidade</b><span class="d">A confiança não depende da marca do agente que escreveu o código.</span></div>
+            <div class="pr"><span class="n">11</span><b>Proporcionalidade</b><span class="d">As verificações consideram risco, tamanho e contexto, sem esconder lacunas.</span></div>
+            <div class="pr"><span class="n">12</span><b>Reprodutibilidade</b><span class="d">Outra execução equivalente deve conseguir verificar a mesma evidência.</span></div>
+          </div>
+        </section>
+
+        <section id="estados" aria-labelledby="t-est">
+          <div class="sec-head">
+            <div class="eyebrow-mono">docs/especificacao/estados-de-decisao.md</div>
+            <h2 id="t-est">Os 4 estados de decisão</h2>
+            <p>
+              A decisão de qualidade vem de políticas explícitas e evidências, não de uma nota
+              subjetiva de IA. Estes são os estados mínimos propostos.
+            </p>
+          </div>
+          <div class="grid4">
+            <div class="card state-card">
+              <span class="state ok"><span class="dot"></span>aprovado</span>
+              <p>Verificações obrigatórias concluídas e critérios atendidos, dentro do escopo declarado.</p>
+            </div>
+            <div class="card state-card">
+              <span class="state block"><span class="dot"></span>bloqueado</span>
+              <p>Falha obrigatória, risco proibido ou violação comprovada de política.</p>
+            </div>
+            <div class="card state-card">
+              <span class="state unk"><span class="dot"></span>inconclusivo</span>
+              <p>Evidência insuficiente, execução incompleta, ambiente indisponível ou conflito não resolvido.</p>
+            </div>
+            <div class="card state-card">
+              <span class="state exc"><span class="dot"></span>exceção autorizada</span>
+              <p>Risco conhecido aceito por pessoa autorizada, com justificativa, escopo e validade.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="modos" aria-labelledby="t-modos">
+          <div class="sec-head">
+            <div class="eyebrow-mono">docs/manifesto.md</div>
+            <h2 id="t-modos">Modo consultivo e modo protegido</h2>
+            <p>O manifesto exige que o produto mostre qual modo está ativo.</p>
+          </div>
+          <div class="grid2">
+            <div class="card">
+              <div class="tile-icon"><svg class="i"><use href="#i-eye" /></svg></div>
+              <h3>Consultivo</h3>
+              <p>
+                Apenas recomenda não publicar. Não tem autoridade técnica para impedir nada.
+              </p>
+            </div>
+            <div class="card">
+              <div class="tile-icon"><svg class="i"><use href="#i-shield" /></svg></div>
+              <h3>Protegido</h3>
+              <p>
+                Tem integração e autoridade para impedir a publicação. Nesse modo, os estados
+                bloqueado e inconclusivo impedem a publicação.
+              </p>
+            </div>
+          </div>
+          <div class="note">
+            <b>Sem falsa proteção:</b> uma versão consultiva nunca será apresentada como proteção
+            inviolável. Se o agente tiver controle administrativo sobre a máquina, as contas e a
+            publicação, uma ferramenta local não consegue garantir proteções invioláveis, e o
+            produto deve dizer isso.
+          </div>
+        </section>
+
+        <section id="evolucao" aria-labelledby="t-evo">
+          <div class="sec-head">
+            <div class="eyebrow-mono">ROADMAP.md</div>
+            <h2 id="t-evo">Evolução proposta, em 4 etapas</h2>
+            <p>
+              As etapas descrevem capacidades, não tecnologias nem prazos. Nenhuma está
+              implementada, e a ordem pode mudar conforme as RFCs.
+            </p>
+          </div>
+          <div class="stages">
+            <div class="stage">
+              <div class="n">etapa 1</div>
+              <h3>Fundação</h3>
+              <p>Investigação de projetos, inventário de testes, critérios de aceitação, execução real, análise de alterações e relatórios de evidências.</p>
+            </div>
+            <div class="stage">
+              <div class="n">etapa 2</div>
+              <h3>Validação independente</h3>
+              <p>Geração de testes, reprodução de bugs, avaliação da eficácia dos testes, detecção de regressões e auditoria de agentes.</p>
+            </div>
+            <div class="stage">
+              <div class="n">etapa 3</div>
+              <h3>Proteção efetiva</h3>
+              <p>Políticas protegidas, isolamento, verificação da esteira de publicação e vinculação da aprovação ao artefato.</p>
+            </div>
+            <div class="stage">
+              <div class="n">etapa 4</div>
+              <h3>Experiência ampliada</h3>
+              <p>Configuração guiada, histórico, explicações acessíveis, correções assistidas e integração com diferentes ambientes.</p>
+            </div>
+          </div>
+          <div class="note">
+            <b>Hoje estamos na etapa 0:</b> especificação. O código só começa depois que as
+            perguntas de formato forem respondidas por uma RFC aceita.
+          </div>
+        </section>
+
+        <section id="agentes" aria-labelledby="t-ag">
+          <div class="sec-head">
+            <div class="eyebrow-mono">AGENTS.md · docs/agentes/compatibilidade.md</div>
+            <h2 id="t-ag">Funciona com o seu agente</h2>
+            <p>
+              Quem trabalha neste repositório com um agente de IA não precisa configurar nada à
+              mão: o <span class="mono">AGENTS.md</span> da raiz é a fonte única de instruções, e
+              cada ferramenta chega nele por um caminho próprio.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Leem o AGENTS.md da raiz, segundo a documentação oficial</h3>
+            <div class="chips">
+              <span class="chip-t">OpenAI Codex (CLI e IDE)</span>
+              <span class="chip-t">Google Antigravity</span>
+              <span class="chip-t">Cursor (editor e CLI)</span>
+              <span class="chip-t">Windsurf</span>
+              <span class="chip-t">Roo Code</span>
+              <span class="chip-t">Kilo Code</span>
+              <span class="chip-t">Zed</span>
+              <span class="chip-t">JetBrains Junie</span>
+              <span class="chip-t">Amp</span>
+              <span class="chip-t">opencode</span>
+              <span class="chip-t">goose</span>
+              <span class="chip-t">Warp</span>
+              <span class="chip-t">Jules</span>
+              <span class="chip-t">Devin</span>
+              <span class="chip-t">Factory Droid</span>
+              <span class="chip-t">Augment Code</span>
+              <span class="chip-t">Kiro</span>
+            </div>
+          </div>
+          <div class="grid2" style="margin-top: 12px">
+            <div class="card">
+              <h3>Com adaptador fornecido pelo repositório</h3>
+              <div class="chips">
+                <span class="chip-t">Claude Code (CLAUDE.md importa o AGENTS.md)</span>
+                <span class="chip-t">GitHub Copilot (cloud agent, CLI e chat no VS Code)</span>
+                <span class="chip-t">GitHub Copilot (demais ambientes, por cópia gerada)</span>
+                <span class="chip-t">Aider</span>
+                <span class="chip-t">Gemini CLI</span>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Não confirmado</h3>
+              <div class="chips">
+                <span class="chip-t off">Codex cloud</span>
+                <span class="chip-t off">Cursor Cloud Agents</span>
+                <span class="chip-t off">Cline</span>
+                <span class="chip-t off">Trae</span>
+                <span class="chip-t off">Qwen Code (caminho do arquivo)</span>
+                <span class="chip-t off">Amazon Q Developer</span>
+                <span class="chip-t off">Continue</span>
+                <span class="chip-t off">JetBrains AI Assistant</span>
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            <b>Limite honesto:</b> a matriz reflete a documentação oficial de cada ferramenta,
+            lida em 2026-11-27. <b>Nenhuma delas foi executada contra este repositório.</b> Para
+            as não confirmadas, o repositório traz cópias do arquivo nas pastas próprias, mas a
+            leitura delas não foi comprovada.
+          </div>
+          <div class="links">
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova/blob/main/docs/agentes/compatibilidade.md"
+              ><svg class="i"><use href="#i-arrow" /></svg>Matriz completa, com as fontes</a
+            >
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova/blob/main/AGENTS.md"
+              ><svg class="i"><use href="#i-arrow" /></svg>AGENTS.md</a
+            >
+          </div>
+        </section>
+
+        <section id="participar" aria-labelledby="t-part">
+          <div class="sec-head">
+            <div class="eyebrow-mono">CONTRIBUTING.md · AI_POLICY.md</div>
+            <h2 id="t-part">Como participar agora</h2>
+            <p>
+              Como não há código, a contribuição mais útil neste momento é intelectual.
+            </p>
+          </div>
+          <div class="grid2">
+            <div class="card">
+              <ol class="steps">
+                <li>
+                  <span><b>Leia o manifesto.</b> É a fonte de verdade do produto, com a especificação completa.</span>
+                </li>
+                <li>
+                  <span><b>Discuta as perguntas em aberto</b> em issues e Discussions. São decisões que ninguém tomou ainda, de propósito.</span>
+                </li>
+                <li>
+                  <span><b>Proponha mudanças maiores por RFC.</b> Decisão de arquitetura ou processo vira ADR.</span>
+                </li>
+                <li>
+                  <span><b>Corrija, traduza ou melhore a documentação.</b> Erro e link quebrado entram por PR direto.</span>
+                </li>
+              </ol>
+            </div>
+            <div class="card">
+              <div class="tile-icon"><svg class="i"><use href="#i-key" /></svg></div>
+              <h3>Política de IA</h3>
+              <p>
+                Usar IA para contribuir é permitido, com uma pessoa responsável pelo resultado.
+                Contribuições externas devem divulgar o uso de IA; os mantenedores estão isentos
+                dessa exigência. Agentes não abrem PR, issue nem comentário sem aprovação humana,
+                e as contribuições são certificadas por DCO, que só a pessoa pode assinar.
+              </p>
+            </div>
+          </div>
+          <div class="links">
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova/blob/main/docs/perguntas-em-aberto.md"
+              ><svg class="i"><use href="#i-help" /></svg>Perguntas em aberto</a
+            >
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova/blob/main/docs/rfcs/README.md"
+              ><svg class="i"><use href="#i-git" /></svg>RFCs</a
+            >
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova/blob/main/CONTRIBUTING.md"
+              ><svg class="i"><use href="#i-file" /></svg>Como contribuir</a
+            >
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova/blob/main/AI_POLICY.md"
+              ><svg class="i"><use href="#i-file" /></svg>Política de IA</a
+            >
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova/discussions"
+              ><svg class="i"><use href="#i-message" /></svg>Discussions</a
+            >
+          </div>
+        </section>
+
+        <section id="github" aria-labelledby="t-gh">
+          <div class="sec-head">
+            <div class="eyebrow-mono">api.github.com · ao vivo</div>
+            <h2 id="t-gh">Atividade no GitHub</h2>
+            <p>
+              Números lidos direto da API pública do GitHub pelo seu navegador, com cache de 10
+              minutos. Estrela, issue e PR contam; o repositório é o lugar da conversa.
+            </p>
+          </div>
+          <div class="gh" id="gh">
+            <div class="card gh-stats">
+              <a class="gh-stat" id="gh-stars" href="https://github.com/Efer-Eder/contraprova/stargazers"
+                ><div class="k">estrelas</div>
+                <div class="v">·</div>
+                <div class="s">stargazers</div></a
+              >
+              <a class="gh-stat" id="gh-forks" href="https://github.com/Efer-Eder/contraprova/forks"
+                ><div class="k">forks</div>
+                <div class="v">·</div>
+                <div class="s">cópias públicas</div></a
+              >
+              <a class="gh-stat" id="gh-commits" href="https://github.com/Efer-Eder/contraprova/commits/main"
+                ><div class="k">commits</div>
+                <div class="v">·</div>
+                <div class="s">na main</div></a
+              >
+              <a class="gh-stat" id="gh-issues" href="https://github.com/Efer-Eder/contraprova/issues"
+                ><div class="k">issues abertas</div>
+                <div class="v">·</div>
+                <div class="s">perguntas e ideias</div></a
+              >
+              <a class="gh-stat" id="gh-prs" href="https://github.com/Efer-Eder/contraprova/pulls"
+                ><div class="k">PRs abertos</div>
+                <div class="v">·</div>
+                <div class="s">contribuições</div></a
+              >
+              <a class="gh-stat" id="gh-ci" href="https://github.com/Efer-Eder/contraprova/actions/workflows/docs.yml"
+                ><div class="k">checagens</div>
+                <div class="v">·</div>
+                <div class="s">último run na main</div></a
+              >
+            </div>
+            <div class="card gh-commits">
+              <div class="gh-head">
+                <h3>Últimos commits</h3>
+                <a href="https://github.com/Efer-Eder/contraprova/commits/main">ver todos</a>
+              </div>
+              <ul class="gh-list" id="gh-commit-list">
+                <li class="gh-empty"><span class="skel"></span></li>
+                <li class="gh-empty"><span class="skel" style="width: 45%"></span></li>
+                <li class="gh-empty"><span class="skel" style="width: 52%"></span></li>
+              </ul>
+            </div>
+            <div class="gh-side">
+              <div class="card">
+                <div class="gh-head">
+                  <h3>Issues abertas</h3>
+                  <a href="https://github.com/Efer-Eder/contraprova/issues/new/choose">abrir uma</a>
+                </div>
+                <ul class="gh-list" id="gh-issue-list">
+                  <li class="gh-empty"><span class="skel"></span></li>
+                </ul>
+              </div>
+              <div class="card">
+                <div class="gh-head">
+                  <h3>Contribuidores</h3>
+                  <a href="https://github.com/Efer-Eder/contraprova/graphs/contributors">gráfico</a>
+                </div>
+                <div class="gh-people" id="gh-people"><span class="skel"></span></div>
+              </div>
+              <div class="card">
+                <div class="gh-head"><h3>Linguagens</h3></div>
+                <div class="gh-langs" id="gh-langs"></div>
+                <div class="gh-legend" id="gh-legend"><span class="skel"></span></div>
+              </div>
+            </div>
+            <div class="gh-foot" id="gh-foot">carregando dados do GitHub...</div>
+          </div>
+        </section>
+
+        <section
+          id="faq"
+          aria-labelledby="t-faq"
+          data-ponto-title="Perguntas"
+          data-ponto="Tem uma pergunta que não está aqui? O repositório tem Discussions, e o manifesto responde a maioria. A resposta mais honesta sobre o Contraprova hoje é: ainda é texto."
+          data-ponto-mood="feliz"
+          data-ponto-hint="tirar uma dúvida"
+        >
+          <div class="sec-head">
+            <div class="eyebrow-mono">perguntas frequentes</div>
+            <h2 id="t-faq">Perguntas frequentes</h2>
+          </div>
+          <div class="faq">
+            <details class="faq-i" data-ponto-faq>
+              <summary>Já posso instalar ou usar o Contraprova?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <p>Não. O projeto está em fase de especificação e não existe software, comando nem serviço. O que dá para fazer hoje é ler o manifesto, discutir as perguntas em aberto e propor RFCs.</p>
+            </details>
+            <details class="faq-i" data-ponto-faq>
+              <summary>Quando vai ficar pronto?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <p>Não há prazo. O código só começa depois que as perguntas de formato forem respondidas por uma RFC aceita, e o roadmap descreve capacidades, não datas.</p>
+            </details>
+            <details class="faq-i" data-ponto-faq>
+              <summary>Ele vai garantir que meu software não tem bugs?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <p>Não. O projeto não promete ausência de bugs nem certificação de segurança. Promete não tratar ausência de evidência de erro como evidência de funcionamento, e dizer o que foi e o que não foi verificado.</p>
+            </details>
+            <details class="faq-i" data-ponto-faq>
+              <summary>Por que não é só mais um revisor de código com IA?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <p>Porque a proposta é separar quem constrói de quem verifica, tratar o que o agente diz como alegação e basear a decisão em evidência observável e política explícita, não em uma nota de modelo.</p>
+            </details>
+            <details class="faq-i" data-ponto-faq>
+              <summary>Posso contribuir usando IA?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <p>Pode, com uma pessoa responsável pelo resultado e a divulgação do uso de IA no PR, no caso de contribuições externas. Agentes não abrem PR sem aprovação humana e não assinam o DCO. Os detalhes estão na <a href="https://github.com/Efer-Eder/contraprova/blob/main/AI_POLICY.md">política de IA</a>.</p>
+            </details>
+            <details class="faq-i" data-ponto-faq>
+              <summary>Qual é a licença?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <p>MIT, de forma provisória: ela será revisada antes da primeira versão que contenha código.</p>
+            </details>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <a class="brand" href="/"><span class="mark" aria-hidden="true">e</span>efer.online</a>
+        <span class="sp"></span>
+        <span class="mono">Contraprova · MIT (provisória)</span>
+        <a href="https://github.com/Efer-Eder/contraprova">GitHub</a>
+      </div>
+    </footer>
+
+    <script>
+      // GitHub live card: public REST API, no token, read in the visitor's browser.
+      (() => {
+        const REPO = 'Efer-Eder/contraprova';
+        const API = 'https://api.github.com/repos/' + REPO;
+        const KEY = 'cp-gh-cache-v1';
+        const TTL = 10 * 60 * 1000;
+        const LANG_COLORS = {
+          Shell: '#89e051',
+          PowerShell: '#5391fe',
+          JavaScript: '#f1e05a',
+          TypeScript: '#3178c6',
+          HTML: '#e34c26',
+          CSS: '#663399',
+        };
+        const $ = (id) => document.getElementById(id);
+        const el = (tag, cls, text) => {
+          const n = document.createElement(tag);
+          if (cls) n.className = cls;
+          if (text != null) n.textContent = text;
+          return n;
+        };
+        const fmt = (n) => new Intl.NumberFormat('pt-BR').format(n);
+        const ago = (iso) => {
+          const s = Math.max(1, Math.round((Date.now() - new Date(iso).getTime()) / 1000));
+          const units = [
+            [31536000, 'ano', 'anos'],
+            [2592000, 'mês', 'meses'],
+            [86400, 'dia', 'dias'],
+            [3600, 'h', 'h'],
+            [60, 'min', 'min'],
+          ];
+          for (const [sec, one, many] of units) {
+            const v = Math.floor(s / sec);
+            if (v >= 1) return 'há ' + v + ' ' + (v === 1 ? one : many);
+          }
+          return 'agora';
+        };
+
+        async function get(path) {
+          const r = await fetch(API + path, { headers: { Accept: 'application/vnd.github+json' } });
+          if (!r.ok)
+            throw new Error(r.status === 403 || r.status === 429 ? 'rate' : 'http ' + r.status);
+          return { body: await r.json(), link: r.headers.get('Link') };
+        }
+        const lastPage = (link) => {
+          const m = link && /[?&]page=(\d+)>;\s*rel="last"/.exec(link);
+          return m ? Number(m[1]) : null;
+        };
+
+        async function load() {
+          const [repo, commits, count, issues, pulls, people, langs, runs] = await Promise.all([
+            get(''),
+            get('/commits?per_page=6'),
+            get('/commits?per_page=1'),
+            get('/issues?state=open&per_page=10'),
+            get('/pulls?state=open&per_page=1'),
+            get('/contributors?per_page=12'),
+            get('/languages'),
+            get('/actions/workflows/docs.yml/runs?branch=main&per_page=1'),
+          ]);
+          const prs = lastPage(pulls.link) ?? pulls.body.length;
+          const run = runs.body.workflow_runs[0];
+          return {
+            at: Date.now(),
+            stars: repo.body.stargazers_count,
+            forks: repo.body.forks_count,
+            watchers: repo.body.subscribers_count,
+            pushed: repo.body.pushed_at,
+            commits: lastPage(count.link) ?? count.body.length,
+            prs,
+            issues: issues.body
+              .filter((i) => !i.pull_request)
+              .slice(0, 5)
+              .map((i) => ({ n: i.number, t: i.title, u: i.html_url, at: i.created_at })),
+            issuesTotal: repo.body.open_issues_count - prs,
+            list: commits.body.map((c) => ({
+              sha: c.sha.slice(0, 7),
+              msg: c.commit.message.split('\n')[0],
+              u: c.html_url,
+              at: c.commit.author.date,
+            })),
+            people: people.body
+              .filter((p) => p.type === 'User')
+              .map((p) => ({ l: p.login, a: p.avatar_url, u: p.html_url, c: p.contributions })),
+            langs: langs.body,
+            ci: run ? { st: run.status, c: run.conclusion, u: run.html_url, at: run.updated_at } : null,
+          };
+        }
+
+        function setStat(id, value, sub) {
+          const a = $('gh-' + id);
+          a.querySelector('.v').textContent = value;
+          if (sub) a.querySelector('.s').textContent = sub;
+        }
+
+        function render(d, cached) {
+          setStat('stars', fmt(d.stars), d.watchers + ' acompanhando');
+          setStat('forks', fmt(d.forks));
+          setStat('commits', fmt(d.commits), 'último ' + ago(d.pushed));
+          setStat('issues', fmt(Math.max(0, d.issuesTotal)));
+          setStat('prs', fmt(d.prs));
+          const ci = $('gh-ci');
+          if (d.ci) {
+            const state =
+              d.ci.st !== 'completed' ? 'running' : d.ci.c === 'success' ? 'success' : 'failure';
+            const label = { running: 'rodando', success: 'passando', failure: 'falhou' }[state];
+            const v = ci.querySelector('.v');
+            v.textContent = '';
+            v.style.display = 'flex';
+            v.style.alignItems = 'center';
+            v.style.gap = '8px';
+            v.append(el('span', 'ci-dot ' + state), el('span', null, label));
+            ci.querySelector('.s').textContent = ago(d.ci.at);
+            ci.href = d.ci.u;
+          }
+
+          const cl = $('gh-commit-list');
+          cl.textContent = '';
+          for (const c of d.list) {
+            const li = el('li');
+            const a = el('a', 'gh-row');
+            a.href = c.u;
+            const m = /^(\w+(?:\([^)]*\))?!?:)\s*(.*)$/.exec(c.msg);
+            const msg = el('span', 'msg');
+            if (m) msg.append(el('em', null, m[1]), document.createTextNode(m[2]));
+            else msg.textContent = c.msg;
+            const t = el('time', null, ago(c.at));
+            t.dateTime = c.at;
+            a.append(el('span', 'sha', c.sha), msg, t);
+            li.append(a);
+            cl.append(li);
+          }
+
+          const il = $('gh-issue-list');
+          il.textContent = '';
+          if (!d.issues.length) {
+            il.append(
+              el(
+                'li',
+                'gh-empty',
+                'Nenhuma issue aberta. Tem uma pergunta ou uma ideia? Abra a primeira.',
+              ),
+            );
+          } else {
+            for (const i of d.issues) {
+              const li = el('li');
+              const a = el('a', 'gh-row');
+              a.href = i.u;
+              a.append(
+                el('span', 'sha', '#' + i.n),
+                el('span', 'msg', i.t),
+                el('time', null, ago(i.at)),
+              );
+              li.append(a);
+              il.append(li);
+            }
+          }
+
+          const pp = $('gh-people');
+          pp.textContent = '';
+          for (const p of d.people) {
+            const a = el('a', 'gh-person');
+            a.href = p.u;
+            const img = el('img');
+            img.src = p.a + '&s=48';
+            img.alt = '';
+            img.loading = 'lazy';
+            a.append(img, document.createTextNode(p.l + ' '), el('span', null, fmt(p.c)));
+            pp.append(a);
+          }
+
+          const total = Object.values(d.langs).reduce((a, b) => a + b, 0) || 1;
+          const bar = $('gh-langs');
+          const legend = $('gh-legend');
+          bar.textContent = '';
+          legend.textContent = '';
+          if (!Object.keys(d.langs).length) {
+            legend.append(el('span', null, 'Só texto: nenhuma linguagem de programação detectada.'));
+          }
+          for (const [name, bytes] of Object.entries(d.langs)) {
+            const pct = (bytes / total) * 100;
+            if (pct < 0.5) continue;
+            const color = LANG_COLORS[name] || '#6c707a';
+            const seg = el('span');
+            seg.style.width = pct + '%';
+            seg.style.background = color;
+            bar.append(seg);
+            const item = el('span');
+            const sw = el('i');
+            sw.style.background = color;
+            item.append(sw, document.createTextNode(name + ' ' + pct.toFixed(1) + '%'));
+            legend.append(item);
+          }
+
+          $('gh-foot').textContent =
+            (cached ? 'dados em cache · ' : 'atualizado agora · ') +
+            'lido de api.github.com/repos/' +
+            REPO +
+            ' às ' +
+            new Date(d.at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        let cache = null;
+        try {
+          cache = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+        } catch {}
+        if (cache && Date.now() - cache.at < TTL) {
+          render(cache, true);
+          return;
+        }
+        if (cache) render(cache, true);
+        load()
+          .then((d) => {
+            render(d, false);
+            try {
+              sessionStorage.setItem(KEY, JSON.stringify(d));
+            } catch {}
+          })
+          .catch((e) => {
+            $('gh-foot').textContent =
+              (e.message === 'rate'
+                ? 'O GitHub limitou as consultas deste IP por agora (60 por hora sem login). '
+                : 'Não deu para ler a API do GitHub agora. ') +
+              'Os números estão no repositório: github.com/' +
+              REPO;
+            if (!cache) {
+              for (const id of ['gh-commit-list', 'gh-issue-list']) {
+                $(id).textContent = '';
+                $(id).append(el('li', 'gh-empty', 'Indisponível no momento.'));
+              }
+              $('gh-people').textContent = '';
+              $('gh-legend').textContent = '';
+            }
+          });
+      })();
+    </script>
+  </body>
+</html>
