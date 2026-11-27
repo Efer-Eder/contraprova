@@ -52,7 +52,8 @@ O estado fica no front matter do arquivo e no índice abaixo.
 | Número | Título | Estado |
 |---|---|---|
 | [0000](0000-modelo.md) | Modelo de RFC | modelo, não é uma proposta |
+| [0001](0001-formato-do-produto.md) | Formato do produto ([PA-01](../perguntas-em-aberto.md)) | rascunho |
 
-Ainda não há RFCs. As primeiras devem tratar das perguntas de formato ([PA-01](../perguntas-em-aberto.md) a [PA-08](../perguntas-em-aberto.md)).
+Nenhuma RFC foi aceita ainda. A 0001 é um rascunho sobre o formato do produto. As demais perguntas de formato ([PA-02](../perguntas-em-aberto.md) a [PA-08](../perguntas-em-aberto.md)) ainda não têm RFC.
 
 Decisões de organização tomadas antes da publicação do repositório (nome, política de IA, idioma, licença provisória) foram registradas direto em ADR, sem RFC.

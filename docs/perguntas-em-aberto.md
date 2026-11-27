@@ -23,6 +23,9 @@ Cada pergunta tem identificador estável `PA-xx`. Uma pergunta é fechada por [A
 | PA-13 | Idioma de longo prazo | [ADR-0001](adr/0001-idioma-da-documentacao-e-dos-commits.md) | aberta |
 | PA-14 | Escopo da capacidade de histórico | manifesto, seção 26 | aberta |
 | PA-15 | Etapa das capacidades não listadas na seção 26 | manifesto, seções 11, 13, 16, 17, 22 e 23 | aberta |
+| PA-16 | Descoberta e exibição do nível de autoridade ativo | [RFC 0001](rfcs/0001-formato-do-produto.md) | aberta |
+| PA-17 | Isolamento de código não confiável em PR de branch interna | [RFC 0001](rfcs/0001-formato-do-produto.md) | aberta |
+| PA-18 | Operação e custo da infraestrutura do nível protegido | [RFC 0001](rfcs/0001-formato-do-produto.md) | aberta |
 
 ## PA-01 Formato do produto
 
@@ -30,6 +33,7 @@ Cada pergunta tem identificador estável `PA-xx`. Uma pergunta é fechada por [A
 - **Por que importa:** o formato determina se o produto consegue executar verificações reais, se há isolamento, se as políticas ficam protegidas e, portanto, se existe bloqueio técnico ou apenas orientação. A seção 28 afirma que uma skill baseada apenas em instruções pode orientar agentes, mas não constitui por si só um bloqueio técnico, e que qualquer formato precisa declarar seus limites de autoridade.
 - **O que investigar:** que verificações reais cada formato consegue executar; como cada um protege políticas e referências aprovadas contra escrita pelo agente desenvolvedor; que modo (consultivo ou protegido) cada formato permite de forma honesta; como cada um é distribuído e usado por quem não domina testes.
 - **Critérios do manifesto (seção 28):** capacidade de executar verificações reais, isolamento, proteção de políticas, facilidade de uso, portabilidade e custo.
+- **Proposta em discussão:** [RFC 0001](rfcs/0001-formato-do-produto.md) (rascunho).
 - **Status:** aberta.
 
 ## PA-02 Linguagens
@@ -141,6 +145,30 @@ Cada pergunta tem identificador estável `PA-xx`. Uma pergunta é fechada por [A
 - **Por que importa:** o manifesto descreve essas capacidades no corpo, mas a seção 26 não as atribui a nenhuma das quatro etapas. Veja [capacidades.md](especificacao/capacidades.md).
 - **O que investigar:** a dependência entre elas e as capacidades das etapas existentes.
 - **Critérios do manifesto:** a seção 26 diz que as etapas descrevem capacidades, não tecnologias nem prazos.
+- **Status:** aberta.
+
+## PA-16 Descoberta e exibição do nível de autoridade ativo
+
+- **Pergunta:** como o produto descobre, por inspeção da configuração, qual nível de autoridade está realmente ativo (consultivo local, consultivo na esteira ou protegido, como propõe a [RFC 0001](rfcs/0001-formato-do-produto.md)), como o exibe, e como detecta e avisa que a proteção foi removida por quem administra o repositório ou a organização?
+- **Por que importa:** as seções 16 e 19 do manifesto pedem que o modo ativo seja exibido e que uma integração não configurada não seja apresentada como proteção ativa. O cenário [CA-14](especificacao/criterios-de-aceitacao.md) depende disso. A seção 15 manda informar o limite quando quem administra pode remover a proteção.
+- **O que investigar:** que configurações da plataforma podem ser lidas com segurança e com que permissões; como distinguir proteção removida de proteção nunca configurada; com que frequência reinspecionar.
+- **Critérios do manifesto:** transparência (P-05), falha segura (P-04) e as seções 16 e 19.
+- **Status:** aberta.
+
+## PA-17 Isolamento de código não confiável em PR de branch interna
+
+- **Pergunta:** como executar o código candidato sem segredos e sem credenciais capazes de alterar política, referência e evidências quando o PR vem de uma branch interna do repositório, o caso típico de um agente com acesso de escrita, que não tem a proteção que existe para forks?
+- **Por que importa:** a seção 15 do manifesto exige que o código candidato não receba credenciais capazes de alterar os controles. A [RFC 0001](rfcs/0001-formato-do-produto.md) registra que quem tem escrita no repositório lê os segredos do repositório e que o sandbox local dos agentes tem limites.
+- **O que investigar:** separar o job que executa código do job que avalia a política; execução em ambiente efêmero; o que muda em Windows, onde alguns agentes não têm sandbox nativo.
+- **Critérios do manifesto:** isolamento e proteção de políticas (seção 28, no conjunto de PA-01) e privilégio mínimo (P-09).
+- **Status:** aberta.
+
+## PA-18 Operação e custo da infraestrutura do nível protegido
+
+- **Pergunta:** quem opera e paga a infraestrutura necessária ao nível protegido, como um GitHub App, e qual é a infraestrutura mínima?
+- **Por que importa:** a [RFC 0001](rfcs/0001-formato-do-produto.md) propõe que fixar a fonte esperada de um check exija um App, o que traz hospedagem, credenciais e responsabilidade operacional, e o custo é um dos critérios da seção 28.
+- **O que investigar:** modelos em que cada usuário opera o próprio App ou o projeto opera um serviço; que dados o App enxerga (privilégio mínimo e privacidade, seção 13); o que acontece com quem não pode ou não quer operar um App.
+- **Critérios do manifesto:** custo e facilidade de uso (seção 28, no conjunto de PA-01) e privacidade (seção 13).
 - **Status:** aberta.
 
 ## Ambiguidades do manifesto registradas na especificação
