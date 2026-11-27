@@ -1,0 +1,62 @@
+name: Resumo de RFC
+description: Apresente o resumo de uma mudança grande para discutir antes de escrever a RFC.
+title: "[RFC] "
+labels: ["rfc"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use este formulário antes de escrever a RFC em docs/rfcs/. Escolhas de formato, linguagem ou arquitetura só avançam por RFC aceita.
+  - type: textarea
+    id: resumo
+    attributes:
+      label: Resumo
+      description: Em poucas frases, o que a RFC proporia.
+    validations:
+      required: true
+  - type: textarea
+    id: motivacao
+    attributes:
+      label: Motivação
+      description: Por que a mudança é necessária e qual dúvida em aberto (PA-xx) ela resolve.
+    validations:
+      required: true
+  - type: textarea
+    id: impacto
+    attributes:
+      label: Impacto na especificação
+      description: Princípios, capacidades, critérios e ADRs que seriam afetados.
+    validations:
+      required: true
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas
+    validations:
+      required: true
+  - type: dropdown
+    id: uso-de-ia
+    attributes:
+      label: Divulgação de uso de IA
+      description: Obrigatório para contribuições externas, conforme o AI_POLICY.md. Informe se IA ajudou a escrever esta issue. Mantenedores escolhem a opção de mantenedor.
+      options:
+        - "Uso de IA: não"
+        - Usei IA para apoio de escrita ou pesquisa
+        - A maior parte foi gerada com IA e revisada por mim
+        - Sou mantenedor (isento da divulgação)
+    validations:
+      required: true
+  - type: input
+    id: ferramenta-ia
+    attributes:
+      label: Ferramenta e extensão do uso de IA
+      description: Se usou IA, diga qual ferramenta e em que extensão. Pode ficar em branco se não usou.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmacao
+    attributes:
+      label: Confirmação
+      options:
+        - label: Li o CONTRIBUTING.md e o código de conduta do projeto.
+          required: true

@@ -1,0 +1,79 @@
+name: Docs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: DavidAnson/markdownlint-cli2-action@3ce8f712b5d8f31acd8e201be6d97e3d2bb23eb7 # v25.1.0
+        with:
+          globs: '**/*.md'
+
+  links:
+    name: links
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --config lychee.toml --no-progress '**/*.md'
+          fail: true
+
+  estilo:
+    name: estilo
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Proibir travessão e emoji
+        env:
+          LC_ALL: C.UTF-8
+        run: |
+          set -eu
+          pattern='\x{2014}|[\x{1F000}-\x{1FAFF}\x{2600}-\x{27BF}\x{2B50}\x{2B55}\x{FE0F}\x{200D}]'
+          # Autoteste: o padrão precisa reconhecer um travessão e um emoji, senão a checagem seria vazia.
+          printf '\xe2\x80\x94' | grep -qP -- "$pattern"
+          printf '\xf0\x9f\x98\x80' | grep -qP -- "$pattern"
+          if printf 'texto comum com acentuação' | grep -qP -- "$pattern"; then
+            echo '::error::O autoteste do padrão casou com texto comum.'
+            exit 1
+          fi
+          matches=$(git ls-files -z -- '*.md' '*.yml' '*.yaml' '*.json' '*.jsonc' '*.sh' ':(exclude)docs/manifesto.md' ':(exclude)CODE_OF_CONDUCT.md' | xargs -0 -r grep -nP -- "$pattern" || true)
+          if [ -n "$matches" ]; then
+            echo "$matches"
+            echo '::error::Travessão ou emoji encontrado. Veja as linhas acima.'
+            exit 1
+          fi
+          echo 'Nenhum travessão ou emoji encontrado.'
+
+  adaptadores:
+    name: adaptadores
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Conferir as cópias geradas de AGENTS.md
+        run: bash scripts/sync-agent-adapters.sh --check

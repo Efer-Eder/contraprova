@@ -1,0 +1,54 @@
+# Referência declarativa dos rótulos do repositório.
+# Não é aplicada automaticamente. Para criar um rótulo, use por exemplo:
+#   gh label create "docs" --color 0075ca --description "Documentação em geral" --force
+- name: good first issue
+  color: 7057ff
+  description: Reservado a pessoas que estão aprendendo; não deve ser resolvido por agentes nem com conteúdo gerado majoritariamente por IA
+- name: help wanted
+  color: 008672
+  description: Ajuda externa é bem-vinda
+- name: docs
+  color: 0075ca
+  description: Documentação em geral
+- name: especificação
+  color: 1d76db
+  description: Princípios, capacidades, critérios e demais itens da especificação
+- name: pesquisa
+  color: c5def5
+  description: Levantamento de fontes e estado da arte
+- name: pergunta
+  color: d876e3
+  description: Pergunta em aberto de produto
+- name: rfc
+  color: fbca04
+  description: Proposta de mudança grande, discutida antes de entrar
+- name: adr
+  color: e99695
+  description: Registro de decisão de arquitetura ou de processo
+- name: agentes
+  color: 5319e7
+  description: Instruções, papéis e protocolos para agentes de IA
+- name: segurança
+  color: b60205
+  description: Tema de segurança (vulnerabilidades vão pelo aviso privado)
+- name: governança
+  color: 0e8a16
+  description: Governança, política e processo do projeto
+- name: ci
+  color: 5b6770
+  description: Workflows e verificações automáticas
+- name: duplicada
+  color: cfd3d7
+  description: Já existe uma issue ou PR sobre o mesmo assunto
+- name: inválida
+  color: e4e669
+  description: Não procede ou não se aplica ao projeto
+- name: não será feito
+  color: ffffff
+  description: Fora do escopo ou rejeitado, com justificativa
+- name: precisa de informação
+  color: f9d0c4
+  description: Aguardando mais informações de quem abriu
+- name: revisão insuficiente
+  color: d93f0b
+  description: Contribuição que o autor não revisou antes de enviar

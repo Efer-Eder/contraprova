@@ -1,0 +1,58 @@
+name: Pergunta em aberto
+description: Discuta uma pergunta de produto pendente ou registre uma nova.
+title: "[Pergunta] "
+labels: ["pergunta"]
+body:
+  - type: input
+    id: pa
+    attributes:
+      label: Qual PA-xx
+      description: Informe o ID em docs/perguntas-em-aberto.md ou escreva "nova pergunta".
+    validations:
+      required: true
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto
+    validations:
+      required: true
+  - type: textarea
+    id: opcoes
+    attributes:
+      label: Opções
+      description: Liste as opções possíveis com vantagens e desvantagens de cada uma.
+    validations:
+      required: true
+  - type: textarea
+    id: evidencias
+    attributes:
+      label: Evidências
+      description: Links e fatos que sustentam as opções. Marque o que não foi verificado.
+    validations:
+      required: true
+  - type: dropdown
+    id: uso-de-ia
+    attributes:
+      label: Divulgação de uso de IA
+      description: Obrigatório para contribuições externas, conforme o AI_POLICY.md. Informe se IA ajudou a escrever esta issue. Mantenedores escolhem a opção de mantenedor.
+      options:
+        - "Uso de IA: não"
+        - Usei IA para apoio de escrita ou pesquisa
+        - A maior parte foi gerada com IA e revisada por mim
+        - Sou mantenedor (isento da divulgação)
+    validations:
+      required: true
+  - type: input
+    id: ferramenta-ia
+    attributes:
+      label: Ferramenta e extensão do uso de IA
+      description: Se usou IA, diga qual ferramenta e em que extensão. Pode ficar em branco se não usou.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmacao
+    attributes:
+      label: Confirmação
+      options:
+        - label: Li o CONTRIBUTING.md e o código de conduta do projeto.
+          required: true

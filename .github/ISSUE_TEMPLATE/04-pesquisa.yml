@@ -1,0 +1,57 @@
+name: Pesquisa
+description: Contribua com levantamento de fontes sobre um tema da especificação.
+title: "[Pesquisa] "
+labels: ["pesquisa"]
+body:
+  - type: input
+    id: tema
+    attributes:
+      label: Tema
+    validations:
+      required: true
+  - type: textarea
+    id: fontes
+    attributes:
+      label: Fontes primárias
+      description: Liste cada fonte com link, autor ou organização e data de acesso.
+    validations:
+      required: true
+  - type: textarea
+    id: verificado
+    attributes:
+      label: O que foi verificado
+    validations:
+      required: true
+  - type: textarea
+    id: nao-verificado
+    attributes:
+      label: O que não foi verificado
+      description: Seja explícito sobre lacunas, páginas inacessíveis e pontos que podem ter mudado.
+    validations:
+      required: true
+  - type: dropdown
+    id: uso-de-ia
+    attributes:
+      label: Divulgação de uso de IA
+      description: Obrigatório para contribuições externas, conforme o AI_POLICY.md. Informe se IA ajudou a escrever esta issue. Mantenedores escolhem a opção de mantenedor.
+      options:
+        - "Uso de IA: não"
+        - Usei IA para apoio de escrita ou pesquisa
+        - A maior parte foi gerada com IA e revisada por mim
+        - Sou mantenedor (isento da divulgação)
+    validations:
+      required: true
+  - type: input
+    id: ferramenta-ia
+    attributes:
+      label: Ferramenta e extensão do uso de IA
+      description: Se usou IA, diga qual ferramenta e em que extensão. Pode ficar em branco se não usou.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmacao
+    attributes:
+      label: Confirmação
+      options:
+        - label: Li o CONTRIBUTING.md e o código de conduta do projeto.
+          required: true

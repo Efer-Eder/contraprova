@@ -1,0 +1,69 @@
+name: Proposta de capacidade ou mudança de escopo
+description: Proponha uma nova capacidade ou uma mudança no escopo da especificação.
+title: "[Proposta] "
+labels: ["especificação"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        O Contraprova está na fase de especificação. Propostas devem se apoiar no manifesto e não podem presumir código, formato ou tecnologia já decididos.
+  - type: textarea
+    id: problema
+    attributes:
+      label: Problema
+      description: Qual problema real isto resolve? Quem é afetado?
+    validations:
+      required: true
+  - type: textarea
+    id: principios
+    attributes:
+      label: Princípios do manifesto afetados
+      description: Cite os princípios (P-01 a P-12) que a proposta toca e como.
+    validations:
+      required: true
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Proposta
+      description: Descreva o que mudaria na especificação. Separe o que é fato (com fonte) do que é sua opinião.
+    validations:
+      required: true
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas consideradas
+    validations:
+      required: true
+  - type: textarea
+    id: verificacao
+    attributes:
+      label: Como isto seria verificado
+      description: Que evidência observável mostraria que a capacidade funciona como descrita?
+    validations:
+      required: true
+  - type: dropdown
+    id: uso-de-ia
+    attributes:
+      label: Divulgação de uso de IA
+      description: Obrigatório para contribuições externas, conforme o AI_POLICY.md. Informe se IA ajudou a escrever esta issue. Mantenedores escolhem a opção de mantenedor.
+      options:
+        - "Uso de IA: não"
+        - Usei IA para apoio de escrita ou pesquisa
+        - A maior parte foi gerada com IA e revisada por mim
+        - Sou mantenedor (isento da divulgação)
+    validations:
+      required: true
+  - type: input
+    id: ferramenta-ia
+    attributes:
+      label: Ferramenta e extensão do uso de IA
+      description: Se usou IA, diga qual ferramenta e em que extensão. Pode ficar em branco se não usou.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmacao
+    attributes:
+      label: Confirmação
+      options:
+        - label: Li o CONTRIBUTING.md e o código de conduta do projeto.
+          required: true

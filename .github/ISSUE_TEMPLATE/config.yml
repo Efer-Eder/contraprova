@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Relatar uma vulnerabilidade
+    url: https://github.com/Efer-Eder/contraprova/security/advisories/new
+    about: Questões de segurança devem ser enviadas em privado pelo aviso de segurança, nunca em uma issue pública.
+  - name: Conversar e tirar dúvidas
+    url: https://github.com/Efer-Eder/contraprova/discussions
+    about: Dúvidas gerais, ideias ainda vagas e conversas abertas ficam nas Discussions.
