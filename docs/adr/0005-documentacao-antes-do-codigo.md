@@ -1,10 +1,12 @@
 ---
-status: "aceita"
+status: "substituída por ADR-0009"
 date: 2026-11-27
 decision-makers: Efer Eder
 ---
 
 # Documentação antes do código
+
+Substituído pelo [ADR-0009](0009-prototipo-executavel-do-motor-em-paralelo.md).
 
 ## Contexto e problema
 

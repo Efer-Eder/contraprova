@@ -48,7 +48,8 @@ Um ADR aceito não é editado para mudar a decisão. Se a decisão mudar, escrev
 | [0002](0002-licenca-mit-provisoria-e-dco.md) | Licença MIT provisória e certificação de origem por DCO | aceita | 2026-11-27 |
 | [0003](0003-politica-de-contribuicoes-assistidas-por-ia.md) | Política de contribuições assistidas por IA | aceita | 2026-11-27 |
 | [0004](0004-nome-do-projeto-contraprova.md) | Adotar Contraprova como nome do projeto | aceita | 2026-11-27 |
-| [0005](0005-documentacao-antes-do-codigo.md) | Documentação antes do código | aceita | 2026-11-27 |
+| [0005](0005-documentacao-antes-do-codigo.md) | Documentação antes do código | substituída por ADR-0009 | 2026-11-27 |
 | [0006](0006-agents-md-como-fonte-unica-para-agentes.md) | AGENTS.md como fonte única de instruções para agentes | aceita | 2026-11-27 |
 | [0007](0007-versionamento-semantico-e-changelog.md) | Versionamento semântico e changelog | aceita | 2026-11-27 |
 | [0008](0008-escopo-do-dco.md) | Escopo do DCO: exigido das contribuições externas | aceita | 2026-11-27 |
+| [0009](0009-prototipo-executavel-do-motor-em-paralelo.md) | Protótipo executável do motor em paralelo com a especificação | aceita | 2026-11-27 |
