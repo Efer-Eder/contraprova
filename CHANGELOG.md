@@ -10,6 +10,11 @@ projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/)
 
 ### Adicionado
 
+- ADR 0009: protótipo executável do motor em paralelo com a especificação, que substitui o ADR 0005 (documentação antes do código). O protótipo é experimental e consultivo, não fecha nenhuma pergunta em aberto, e a RFC 0001 segue seu ciclo. A revisão da licença continua pendente antes da primeira versão publicada.
+- Protótipo experimental do motor (versão 0.0.1) em `motor/`, com a skill em `skills/contraprova/` e o `package.json` da raiz: programa de linha de comando em Node.js 22 ou mais novo, sem dependências e não publicado no npm. Comandos `investigar`, `verificar`, `provar`, `esteira` e `comparar`; decisões aprovado, bloqueado e inconclusivo (exceção autorizada não implementada); nível consultivo local, sem isolamento. Verificado em 2026-11-27 no Windows 11 com Node 24: `npm test` com 77 testes e 0 falhas, e o motor contra os exemplos deu `correto` aprovado, `teste-fraco` inconclusivo, `teste-falhando` bloqueado e `sem-testes` inconclusivo. Linux, macOS e projetos reais de terceiros não foram verificados.
+- Workflow `.github/workflows/motor.yml` com os testes do motor em Ubuntu e Windows, Node 22 e 24. Ainda não rodou na CI do GitHub.
+- Seção "Experimente o protótipo" nos dois READMEs e regras de contribuição para o protótipo em `CONTRIBUTING.md`.
+- Escolhas provisórias do protótipo registradas em PA-02 e PA-05, sem fechar nenhuma das duas perguntas.
 - ADR 0008 esclarecendo o escopo do DCO: o `Signed-off-by` é exigido das contribuições externas, e os commits do mantenedor não o levam.
 - Manifesto do projeto em `docs/manifesto.md`, como fonte de verdade.
 - Especificação em `docs/especificacao/`: princípios, capacidades, critérios de aceitação, estados de decisão, modelo de ameaças, fluxo de uso, não objetivos e glossário.
@@ -27,5 +32,10 @@ projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/)
 - Configuração de repositório: `.gitignore`, `.gitattributes`, `.editorconfig`, `.markdownlint-cli2.jsonc` e `lychee.toml`.
 - Página pública do projeto em `site/` (arquivo estático, sem build), com os scripts de publicação em `deploy/` e o guia `docs/publicar-pagina.md`. A página está no ar em `https://efer.online/projeto/contraprova/` e é citada nos READMEs.
 - Repositório público no GitHub com proteção da `main`, relato privado de vulnerabilidades, Discussions e rótulos configurados.
+
+### Alterado
+
+- `AGENTS.md`, READMEs, `ROADMAP.md`, `CONTRIBUTING.md`, `SECURITY.md`, `SUPPORT.md`, `docs/` e o formulário de proposta deixam de dizer que não há código: passam a dizer especificação com protótipo experimental e consultivo (ADR 0009).
+- ADR 0005 marcado como substituído pelo ADR 0009.
 
 [Unreleased]: https://github.com/Efer-Eder/contraprova/commits/main

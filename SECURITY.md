@@ -2,14 +2,15 @@
 
 ## Escopo
 
-O Contraprova está em fase de especificação. Não há código do produto, pacote publicado nem versão, e por isso **não há tabela de versões suportadas**.
+O Contraprova está em fase de especificação, com um protótipo experimental do motor em `motor/`. Não há produto, pacote publicado nem versão lançada, e por isso **não há tabela de versões suportadas**.
 
 Esta política cobre o que existe hoje no repositório:
 
 - workflows e configurações do GitHub Actions (permissões excessivas, injeção de comandos, ações de terceiros sem fixação);
 - segredos, tokens ou dados pessoais expostos por engano em arquivos ou no histórico;
 - links, scripts ou instruções na documentação que possam levar a pessoa a uma ação insegura;
-- falhas nas proteções do repositório (por exemplo, forma de contornar a proteção da `main`).
+- falhas nas proteções do repositório (por exemplo, forma de contornar a proteção da `main`);
+- falhas de segurança no código do protótipo em `motor/` (por exemplo, ele alterar o projeto analisado, apagar arquivos fora da pasta temporária ou enviar dados pela rede). O protótipo roda o código do projeto analisado sem isolamento: isso é um limite conhecido e documentado em [motor/README.md](motor/README.md), não uma vulnerabilidade.
 
 Questões conceituais sobre o modelo de ameaças do produto (o que o Contraprova deveria considerar) não são vulnerabilidades: discuta-as em issue ou RFC. Veja [docs/especificacao/modelo-de-ameacas.md](docs/especificacao/modelo-de-ameacas.md).
 

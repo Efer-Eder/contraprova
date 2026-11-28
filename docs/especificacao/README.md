@@ -2,7 +2,7 @@
 
 Esta pasta reorganiza o [manifesto](../manifesto.md) em documentos rastreáveis. Ela não acrescenta requisitos: cada item aponta para a seção do manifesto de onde veio. Se algo aqui divergir do manifesto, vale o manifesto, e a divergência é um erro a corrigir.
 
-O projeto está na fase de especificação. Não existe código, e o formato (skill, agente, programa independente, integração, serviço ou combinação) ainda não foi decidido. Veja [perguntas em aberto](../perguntas-em-aberto.md).
+O projeto está na fase de especificação, com um protótipo experimental do motor que não faz parte da especificação ([ADR 0009](../adr/0009-prototipo-executavel-do-motor-em-paralelo.md)). O formato (skill, agente, programa independente, integração, serviço ou combinação) ainda não foi decidido. Veja [perguntas em aberto](../perguntas-em-aberto.md).
 
 ## Documentos
 

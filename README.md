@@ -1,7 +1,7 @@
 # Contraprova
 
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-7377F0?style=flat-square)](LICENSE)
-[![Estado: especificação](https://img.shields.io/badge/estado-especifica%C3%A7%C3%A3o-orange?style=flat-square)](ROADMAP.md)
+[![Estado: especificação e protótipo experimental](https://img.shields.io/badge/estado-especifica%C3%A7%C3%A3o%20%2B%20prot%C3%B3tipo-orange?style=flat-square)](ROADMAP.md)
 
 **Desenvolva com IA. Valide com evidências.**
 
@@ -11,9 +11,41 @@
 
 ## Estado do projeto
 
-**O Contraprova está em fase de especificação. Ainda não há software para instalar.**
+**O Contraprova está em fase de especificação, com um protótipo experimental do motor que já roda. Não é um produto pronto.**
 
-Não existe código, pacote, comando ou serviço. O formato do produto (skill, agente, programa independente, integração, serviço ou uma combinação), a linguagem e a arquitetura estão em aberto e serão decididos por RFC. Tudo o que este repositório contém hoje é texto: o manifesto, a especificação, as decisões registradas e as regras de colaboração. Nada aqui deve ser lido como produto pronto, prazo ou promessa de entrega.
+O protótipo é um programa de linha de comando, de nível **consultivo**: ele recomenda, não impede nada. Não há pacote publicado, e o formato do produto (skill, agente, programa independente, integração, serviço ou uma combinação), a linguagem e a arquitetura seguem em aberto e serão decididos por RFC. As escolhas de tecnologia do protótipo são provisórias e não fecham nenhuma pergunta em aberto ([ADR 0009](docs/adr/0009-prototipo-executavel-do-motor-em-paralelo.md)). O resto do repositório é texto: o manifesto, a especificação, as decisões registradas e as regras de colaboração. Nada aqui deve ser lido como proteção, produto pronto, prazo ou promessa de entrega.
+
+## Experimente o protótipo
+
+Requisito: Node.js 22 ou mais novo. O protótipo não tem dependências. A partir de um clone deste repositório:
+
+```sh
+node motor/bin/contraprova.js verificar <pasta-do-projeto>
+```
+
+Ou direto do GitHub, sem clonar:
+
+```sh
+npx --yes github:Efer-Eder/contraprova verificar .
+```
+
+Não existe pacote no npm: esse comando baixa o código deste repositório e o executa na sua máquina. Leia antes de rodar.
+
+O que ele faz:
+
+- executa os testes do projeto de verdade e usa o resultado, em vez de acreditar em quem diz que passaram;
+- introduz defeitos simples numa cópia temporária do projeto, para ver se os testes percebem (o projeto original não é alterado);
+- audita os workflows do GitHub Actions por heurística, apontando o que pode fazer falhas passarem;
+- gera um relatório de evidências (`.contraprova/relatorio.md` e `.contraprova/relatorio.json`) com a decisão: aprovado, bloqueado ou inconclusivo.
+
+Limites:
+
+- reconhece só projetos Node.js e Python, e a análise de testes e de workflows é heurística, podendo errar para os dois lados;
+- não há isolamento: o código do projeto analisado roda na sua máquina, com as suas permissões. Não rode em projeto em que você não confia;
+- não é modo protegido: o resultado recomenda e pode ser ignorado por quem controla a máquina ou o repositório;
+- a decisão "exceção autorizada" não está implementada.
+
+Detalhes, comandos, códigos de saída e limites completos em [motor/README.md](motor/README.md).
 
 ## O problema
 
@@ -97,6 +129,8 @@ As etapas descrevem capacidades, não tecnologias nem prazos (seção 26 do mani
 
 | Onde | O que há |
 |---|---|
+| [motor/](motor/README.md) | Protótipo experimental do motor, consultivo. Veja o [ADR 0009](docs/adr/0009-prototipo-executavel-do-motor-em-paralelo.md). |
+| [skills/](skills/contraprova/SKILL.md) | Skill do protótipo, para agentes explicarem o resultado. |
 | [docs/manifesto.md](docs/manifesto.md) | Fonte de verdade: manifesto e especificação de produto. |
 | [docs/README.md](docs/README.md) | Índice da documentação. |
 | [docs/especificacao/](docs/especificacao/) | Princípios, capacidades, critérios de aceitação, estados de decisão, modelo de ameaças, fluxo de uso, não objetivos e glossário. |
@@ -110,12 +144,13 @@ As etapas descrevem capacidades, não tecnologias nem prazos (seção 26 do mani
 
 ## Como participar agora
 
-Como não há código, a contribuição mais útil neste momento é intelectual:
+Como o produto ainda não foi decidido, a contribuição mais útil neste momento é intelectual, e testar o protótipo em projetos seus e relatar o que ele errou também ajuda:
 
 1. Leia o [manifesto](docs/manifesto.md).
 2. Discuta as [perguntas em aberto](docs/perguntas-em-aberto.md) em issues e Discussions.
 3. Proponha mudanças maiores por [RFC](docs/rfcs/README.md).
 4. Corrija, traduza ou melhore a documentação.
+5. Rode o protótipo (`npm test` no clone, ou a seção acima) e relate o que ele acertou e errou.
 
 O fluxo completo está em [CONTRIBUTING.md](CONTRIBUTING.md). As contribuições externas são certificadas por DCO (`git commit -s`; os commits do mantenedor não levam `Signed-off-by`), e o uso de IA nelas segue a [AI_POLICY.md](AI_POLICY.md) (divulgação obrigatória para contribuições externas; os mantenedores estão isentos dessa exigência).
 
@@ -129,4 +164,4 @@ O projeto nasceu com o nome de trabalho VibeGuard e passou a se chamar Contrapro
 
 ## Licença
 
-[MIT](LICENSE), de forma provisória: a licença será revisada antes da primeira versão que contenha código ([ADR 0002](docs/adr/0002-licenca-mit-provisoria-e-dco.md)). Copyright (c) 2026 Efer Eder.
+[MIT](LICENSE), de forma provisória: a licença será revisada antes da primeira versão que contenha código; o protótipo ainda não foi publicado como versão ([ADR 0002](docs/adr/0002-licenca-mit-provisoria-e-dco.md)). Copyright (c) 2026 Efer Eder.

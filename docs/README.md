@@ -1,12 +1,12 @@
 # Documentação do Contraprova
 
-O Contraprova é uma proposta de camada independente de verificação para software feito com IA: "Desenvolva com IA. Valide com evidências." O projeto está na **fase de especificação**. Não há código, e o formato do produto (skill, agente, programa independente, integração, serviço ou combinação) ainda não foi decidido. Nada nesta documentação descreve algo que já exista como produto.
+O Contraprova é uma proposta de camada independente de verificação para software feito com IA: "Desenvolva com IA. Valide com evidências." O projeto está na **fase de especificação**, com um protótipo experimental do motor, de nível consultivo ([ADR 0009](adr/0009-prototipo-executavel-do-motor-em-paralelo.md)). O formato do produto (skill, agente, programa independente, integração, serviço ou combinação) ainda não foi decidido. Nada nesta documentação descreve algo que já exista como produto pronto.
 
 A fonte de verdade é o [manifesto](manifesto.md), o texto original com o nome do projeto atualizado. Tudo o mais deriva dele ou registra decisões de organização do projeto.
 
 ## Organização segundo o Diátaxis
 
-Esta documentação segue o [Diátaxis](https://diataxis.fr/), que separa a documentação em quatro tipos: tutoriais, guias práticos, referência e explicação. Como não há produto, dois quadrantes estão vazios, e dizemos isso em vez de preencher com texto de enchimento.
+Esta documentação segue o [Diátaxis](https://diataxis.fr/), que separa a documentação em quatro tipos: tutoriais, guias práticos, referência e explicação. Como não há produto, dois quadrantes estão vazios (o protótipo tem só o [motor/README.md](../motor/README.md), que é referência), e dizemos isso em vez de preencher com texto de enchimento.
 
 | Quadrante | Para quê | Estado hoje | Onde |
 |---|---|---|---|
@@ -15,7 +15,7 @@ Esta documentação segue o [Diátaxis](https://diataxis.fr/), que separa a docu
 | Referência | Consultar fatos sobre o projeto | Preenchido para a especificação | [especificacao](especificacao/README.md), [perguntas em aberto](perguntas-em-aberto.md) |
 | Explicação | Entender o porquê | Preenchido | [manifesto](manifesto.md), [pesquisa](pesquisa/README.md), [ADRs](adr/README.md) |
 
-Os quadrantes de tutoriais e de guias de uso do produto ficarão vazios até existir um produto. Um guia ou tutorial escrito antes disso seria especulação, e o [ADR-0005](adr/0005-documentacao-antes-do-codigo.md) manda não fingir que algo existe.
+Os quadrantes de tutoriais e de guias de uso do produto ficarão vazios até existir um produto. Um guia ou tutorial escrito antes disso seria especulação, e o [ADR-0009](adr/0009-prototipo-executavel-do-motor-em-paralelo.md) manda não fingir que o protótipo é produto.
 
 ## Mapa dos arquivos
 
@@ -53,6 +53,7 @@ Os quadrantes de tutoriais e de guias de uso do produto ficarão vazios até exi
 - [adr/0006-agents-md-como-fonte-unica-para-agentes.md](adr/0006-agents-md-como-fonte-unica-para-agentes.md)
 - [adr/0007-versionamento-semantico-e-changelog.md](adr/0007-versionamento-semantico-e-changelog.md)
 - [adr/0008-escopo-do-dco.md](adr/0008-escopo-do-dco.md)
+- [adr/0009-prototipo-executavel-do-motor-em-paralelo.md](adr/0009-prototipo-executavel-do-motor-em-paralelo.md)
 - [rfcs/README.md](rfcs/README.md): processo de RFC.
 - [rfcs/0000-modelo.md](rfcs/0000-modelo.md): modelo de RFC.
 

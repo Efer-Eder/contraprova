@@ -1,5 +1,32 @@
 # Progresso
 
+## 2026-11-27: protótipo executável do motor e ADR 0009
+
+### O que foi feito
+
+- Decidi começar um protótipo executável do motor em paralelo com a RFC 0001 (em discussão no [PR 6](https://github.com/Efer-Eder/contraprova/pull/6)). Motivo: o repositório estava cru demais para atrair discussão, e sem algo que funcione ninguém interage. A discussão com apoiadores virá depois. O ADR 0009 registra a decisão e substitui o ADR 0005.
+- O protótipo (versão 0.0.1) é um programa de linha de comando em Node.js 22 ou mais novo, JavaScript ESM, sem dependências e não publicado no npm, em `motor/`, com a skill em `skills/contraprova/`. Comandos: `investigar`, `verificar`, `provar`, `esteira` e `comparar`. Decisões: aprovado, bloqueado e inconclusivo (exceção autorizada não implementada). Nível de autoridade: consultivo local.
+- Documentação alinhada: `AGENTS.md` (com os adaptadores regenerados), READMEs, `ROADMAP.md`, `CONTRIBUTING.md`, `SECURITY.md`, `SUPPORT.md`, `GOVERNANCE.md`, `docs/`, formulário de proposta, e uma linha "escolha provisória" em PA-02 e PA-05 sem mudar o status de nenhuma pergunta.
+- Novo workflow `.github/workflows/motor.yml` (testes do motor em Ubuntu e Windows, Node 22 e 24).
+
+### Decisões
+
+- As escolhas de stack são provisórias e não fecham PA-02, PA-03, PA-04, PA-05, PA-06, PA-07 nem PA-08. PA-01 continua aberta até a RFC 0001 ser decidida. O protótipo é evidência para a RFC, não decisão.
+- Sobre a licença: o ADR 0002 manda revisar "antes da primeira versão que contenha código". Li como "primeira versão publicada", porque nada foi publicado; a ambiguidade está registrada no ADR 0009 e a revisão (PA-09) segue pendente.
+
+### Verificado em 2026-11-27 (Windows 11, Node 24)
+
+- `npm test`: 77 testes, 0 falhas.
+- O motor contra os exemplos: `correto` aprovado (saída 0), `teste-fraco` inconclusivo (2), `teste-falhando` bloqueado (1), `sem-testes` inconclusivo (2).
+- `npx --yes github:Efer-Eder/contraprova#feat/engine-prototype verificar .` funcionou num diretório de teste (decisão inconclusivo, saída 2).
+
+### O que NÃO foi verificado
+
+- Linux e macOS. O workflow `motor.yml` os cobre, mas não rodou no GitHub.
+- `npx` a partir da branch principal (só depois do merge).
+- Projetos reais de terceiros e Python além de um exemplo com `unittest`.
+- A página pública em `site/index.html` não foi atualizada e continua dizendo que não há software.
+
 ## 2026-11-27: escopo do DCO
 
 ### O que foi feito

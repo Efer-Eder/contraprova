@@ -4,7 +4,7 @@ Este guia vale para quem contribui com ajuda de um agente de IA, seja qual for o
 
 ## Estado atual do projeto
 
-Hoje o repositório só tem documentação: manifesto, especificação, ADRs, RFCs e pesquisa. Não há código, testes, esteira de publicação nem produto. Por isso, tudo o que este guia pede se aplica a **contribuições de documentação, ADR e RFC**. O que só valerá quando houver código está marcado como tal, e não deve ser tratado como regra em vigor agora.
+Hoje o repositório tem principalmente documentação: manifesto, especificação, ADRs, RFCs e pesquisa. O código que existe é um protótipo experimental e consultivo do motor, em `motor/` e `skills/` ([ADR-0009](../adr/0009-prototipo-executavel-do-motor-em-paralelo.md)), com testes (`npm test`) e uma esteira de testes própria. Não há produto nem pacote publicado. Este guia se aplica a **contribuições de documentação, ADR e RFC** e, nas regras do `AGENTS.md`, ao protótipo. O que só valerá quando houver produto está marcado como tal, e não deve ser tratado como regra em vigor agora.
 
 ## Regras que valem sempre
 

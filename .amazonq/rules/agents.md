@@ -8,10 +8,11 @@ Instruções para qualquer agente de IA que trabalhe neste repositório. Esta é
 
 O Contraprova é uma proposta de camada independente de verificação para software feito com IA. Lema: "Desenvolva com IA. Valide com evidências."
 
-- Fase atual: **especificação**. O repositório contém só Markdown, YAML, JSON, configuração e scripts de manutenção do próprio repositório em `scripts/`. Esses scripts são permitidos e não são código do produto. O mesmo vale para `site/` (página pública do projeto) e `deploy/` (publicação dessa página): são manutenção do projeto, não código do produto.
-- Não existe código, build, teste automatizado nem comando de instalação do produto. Formato, linguagem e arquitetura estão em aberto.
-- Não crie código do produto, scaffolding, `package.json`, `pyproject.toml`, Dockerfile nem escolha de stack antes de as perguntas de formato (PA-01 a PA-08) serem respondidas por RFC aceita.
-- Não invente comandos de instalação ou uso do Contraprova. Eles não existem.
+- Fase atual: **especificação, com um protótipo experimental do motor** (ADR 0009, que substitui o ADR 0005). O protótipo é um programa de linha de comando em Node.js, sem dependências, de nível consultivo local: recomenda, não impede. Está em `motor/` (código, testes, exemplos e `motor/README.md`) e em `skills/` (a skill), com o `package.json` da raiz. Não está publicado em nenhum registro de pacotes.
+- Fora disso o repositório contém Markdown, YAML, JSON, configuração e scripts de manutenção do próprio repositório em `scripts/`. Esses scripts são permitidos e não são código do produto. O mesmo vale para `site/` (página pública do projeto) e `deploy/` (publicação dessa página).
+- Pode-se evoluir o protótipo em `motor/` e `skills/` dentro do que as RFCs e o ADR 0009 delimitam. As escolhas de stack dele são provisórias e não fecham nenhuma pergunta em aberto (PA-01 a PA-08). Formato, linguagem e arquitetura definitivos seguem em aberto e dependem de RFC aceita.
+- Não escolha stack definitiva, não publique pacote e não apresente o protótipo como proteção, produto pronto ou modo protegido. Não adicione dependências sem autorização de um humano.
+- Não invente comandos de instalação ou uso. Os que existem estão em `motor/README.md` e na ajuda do programa (`node motor/bin/contraprova.js --ajuda`).
 
 ## Leia antes de agir
 
@@ -61,6 +62,7 @@ lychee --config lychee.toml --no-progress "**/*.md"
 
 - O segundo comando só funciona se o `lychee` estiver instalado. Se não estiver, diga que a checagem de links não foi executada.
 - Estilo e segredos só são verificados pela CI. Se não os verificou por outro meio, diga que não verificou.
+- Para o protótipo do motor, rode `npm test` (usa o `node --test` do Node.js 22 ou mais novo, sem instalar nada). Ao mexer em `motor/` ou `skills/`, rode também `node motor/bin/contraprova.js verificar . --sem-prova` e relate a decisão, dizendo que a eficácia dos testes não foi verificada. A prova completa sobre o próprio repositório é lenta, porque os testes do motor rodam o próprio motor em cada defeito introduzido. Relate o que não rodou.
 - Ao mexer em YAML ou JSON, valide com um parser de verdade antes de entregar.
 - Depois de mudar este `AGENTS.md`, regenere os adaptadores e confira com `bash scripts/sync-agent-adapters.sh --check` (veja a seção Adaptadores).
 

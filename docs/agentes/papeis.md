@@ -6,7 +6,7 @@ Um papel não é um agente específico. Pode ser exercido por uma pessoa ou por 
 
 ## Fase atual e fase com código
 
-O repositório só tem documentação hoje. A coluna "Hoje" descreve o papel em contribuições de documentação, ADR e RFC. A coluna "Quando houver código" está marcada como futura e **não vale ainda**.
+O repositório é principalmente documentação, com um protótipo experimental do motor em `motor/` ([ADR-0009](../adr/0009-prototipo-executavel-do-motor-em-paralelo.md)). A coluna "Hoje" descreve o papel em contribuições de documentação, ADR e RFC. A coluna "Quando houver código" vale como orientação também para o protótipo, mas descreve o código do produto: ele não existe ainda, e o protótipo não deve ser tratado como produto.
 
 ## Implementador
 
@@ -19,7 +19,7 @@ Escreve a alteração.
 
 ## Gerador de testes
 
-Na fase atual não existem testes de software; este papel passa a valer com código. Hoje, a função análoga é **verificar a documentação**: checagens mecânicas e revisão de consistência (links, identificadores, ausência de travessão e de emoji).
+Na documentação não existem testes de software; para o protótipo os testes estão em `motor/testes/` e rodam com `npm test`. Hoje, a função análoga é **verificar a documentação**: checagens mecânicas e revisão de consistência (links, identificadores, ausência de travessão e de emoji).
 
 | | Pode | Não pode |
 |---|---|---|

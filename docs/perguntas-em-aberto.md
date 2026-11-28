@@ -38,6 +38,7 @@ Cada pergunta tem identificador estável `PA-xx`. Uma pergunta é fechada por [A
 - **Por que importa:** limita o público inicial e a portabilidade. O manifesto exige não impor a mesma arquitetura a todos os projetos (seção 27).
 - **O que investigar:** linguagens dos projetos do público descrito na seção 3; custo de suportar cada uma; relação com o formato escolhido em PA-01.
 - **Critérios do manifesto:** o manifesto não cita critérios específicos para este ponto, apenas que ficam para investigação posterior. Os critérios devem ser propostos em RFC, com referência aos listados em PA-01.
+- **Escolha provisória do protótipo:** Node.js sem dependências, para o motor experimental de `motor/`. Não fecha esta pergunta ([ADR 0009](adr/0009-prototipo-executavel-do-motor-em-paralelo.md)).
 - **Status:** aberta.
 
 ## PA-03 Ferramentas
@@ -62,6 +63,7 @@ Cada pergunta tem identificador estável `PA-xx`. Uma pergunta é fechada por [A
 - **Por que importa:** afeta facilidade de uso, portabilidade e custo, e a cadeia de suprimentos do próprio projeto.
 - **O que investigar:** canais de distribuição compatíveis com o formato escolhido; como garantir que uma atualização não enfraquece proteções silenciosamente (seção 23).
 - **Critérios do manifesto:** facilidade de uso, portabilidade e custo (seção 28, no conjunto de PA-01).
+- **Escolha provisória do protótipo:** execução a partir do repositório (clone ou `npx` pelo GitHub), sem pacote publicado. Não fecha esta pergunta ([ADR 0009](adr/0009-prototipo-executavel-do-motor-em-paralelo.md)).
 - **Status:** aberta.
 
 ## PA-06 Interfaces

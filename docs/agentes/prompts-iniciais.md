@@ -7,7 +7,7 @@ Ajuste os trechos entre colchetes. Não cole segredos nem dados pessoais.
 ## Prompt base (qualquer papel)
 
 ```text
-Você vai ajudar em uma contribuição ao projeto Contraprova, que hoje é apenas uma especificação (não há código).
+Você vai ajudar em uma contribuição ao projeto Contraprova, que hoje é uma especificação com um protótipo experimental do motor em `motor/` (nível consultivo; não há produto pronto).
 
 Antes de agir:
 1. Leia AGENTS.md na raiz do repositório e docs/manifesto.md.
@@ -41,7 +41,7 @@ Você não revisa nem aprova o próprio trabalho. Ao final, entregue pelo protoc
 ## Gerador de testes (verificação de consistência, na fase atual)
 
 ```text
-Papel: gerador de testes. Hoje não há código, então a tarefa é criar verificações de consistência da documentação.
+Papel: gerador de testes. Para documentação, a tarefa é criar verificações de consistência da documentação. Para o protótipo do motor, os testes ficam em `motor/testes/` e rodam com `npm test`.
 
 Verifique, sem alterar os documentos, e relate o resultado real de cada verificação:
 - ocorrências de travessão e de emoji fora de docs/manifesto.md;

@@ -9,7 +9,7 @@ Uma RFC (pedido de comentários) é uma proposta escrita de mudança significati
 - responder a uma [pergunta em aberto](../perguntas-em-aberto.md) (por exemplo, o formato do produto);
 - mudar, acrescentar ou remover um princípio, uma capacidade ou um critério de aceitação da [especificação](../especificacao/README.md);
 - propor qualquer coisa que altere a leitura do [manifesto](../manifesto.md) ou o escopo de [o que o projeto não é](../especificacao/nao-objetivos.md);
-- introduzir o primeiro código, uma linguagem, uma ferramenta ou uma integração (conforme [ADR-0005](../adr/0005-documentacao-antes-do-codigo.md)): o código só começa com as perguntas de formato ([PA-01](../perguntas-em-aberto.md) a [PA-08](../perguntas-em-aberto.md)) respondidas por RFC aceita;
+- escolher a linguagem, a ferramenta, o formato ou a integração definitivos, ou publicar pacote (conforme o [ADR-0009](../adr/0009-prototipo-executavel-do-motor-em-paralelo.md)): o protótipo experimental de `motor/` é permitido, mas não fecha as perguntas de formato ([PA-01](../perguntas-em-aberto.md) a [PA-08](../perguntas-em-aberto.md)), que continuam dependendo de RFC aceita;
 - mudar a política de contribuição ou de governança.
 
 Basta uma issue ou um PR comum para:
@@ -53,6 +53,6 @@ O estado fica no front matter do arquivo e no índice abaixo.
 |---|---|---|
 | [0000](0000-modelo.md) | Modelo de RFC | modelo, não é uma proposta |
 
-Ainda não há RFCs. As primeiras devem tratar das perguntas de formato ([PA-01](../perguntas-em-aberto.md) a [PA-08](../perguntas-em-aberto.md)).
+Ainda não há RFC aceita. A RFC 0001, sobre o formato do produto, está em discussão pública no [PR 6](https://github.com/Efer-Eder/contraprova/pull/6). As primeiras devem tratar das perguntas de formato ([PA-01](../perguntas-em-aberto.md) a [PA-08](../perguntas-em-aberto.md)).
 
 Decisões de organização tomadas antes da publicação do repositório (nome, política de IA, idioma, licença provisória) foram registradas direto em ADR, sem RFC.

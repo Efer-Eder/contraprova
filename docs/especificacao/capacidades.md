@@ -1,6 +1,6 @@
 # Capacidades
 
-Catálogo das capacidades descritas no [manifesto](../manifesto.md), agrupadas pelas quatro etapas da seção 26. As etapas descrevem capacidades, não tecnologias nem prazos, e esta lista também não os define. Nenhuma capacidade está implementada: o projeto está em fase de especificação.
+Catálogo das capacidades descritas no [manifesto](../manifesto.md), agrupadas pelas quatro etapas da seção 26. As etapas descrevem capacidades, não tecnologias nem prazos, e esta lista também não os define. Nenhuma capacidade está implementada como produto: o projeto está em fase de especificação, e o protótipo experimental de `motor/` exercita só parte delas, sem que isso as dê por entregues ([ADR 0009](../adr/0009-prototipo-executavel-do-motor-em-paralelo.md)).
 
 Os identificadores `CAP-xx` são uma numeração editorial. Os princípios relacionados estão em [principios.md](principios.md).
 

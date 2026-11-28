@@ -21,7 +21,7 @@ Via `npx`, direto do GitHub (não existe pacote no npm):
 npx --yes github:Efer-Eder/contraprova verificar .
 ```
 
-NÃO VERIFICADO: o `npx` pelo GitHub só passa a funcionar depois que este código estiver na branch principal, e não foi testado. Ele baixa o código do repositório do projeto e o executa na sua máquina.
+Verificado em 2026-11-27, no Windows 11 com Node 24: `npx --yes github:Efer-Eder/contraprova#feat/engine-prototype verificar .` funcionou num diretório de teste (decisão inconclusivo, saída 2). A partir da branch principal só passa a valer depois do merge e ainda não foi testado. O comando baixa o código do repositório do projeto e o executa na sua máquina.
 
 ## Comandos
 
@@ -82,5 +82,5 @@ O comando roda `node --test "motor/testes/*.test.js"`. O padrão com aspas é ne
 - O motor não inspeciona as regras de proteção do repositório (branch protegida, checks obrigatórios, quem pode contornar).
 - A comparação com `--base` não vê arquivos novos ainda não rastreados pelo git, e uma mudança legítima pode gerar suspeita.
 - Pastas chamadas `exemplos`, `examples` e `fixtures` ficam fora do inventário e da prova.
-- Não foi verificado em Linux nem em macOS, e o `npx` pelo GitHub não foi testado.
+- Verificado só no Windows 11 com Node 24 (77 testes, 0 falhas, em 2026-11-27). Linux e macOS não foram verificados à mão: a esteira `.github/workflows/motor.yml` os cobre quando rodar num PR. O `npx` a partir da branch principal não foi testado.
 - O motor não envia nada pela rede.

@@ -1,7 +1,7 @@
 # Contraprova
 
 [![MIT License](https://img.shields.io/badge/license-MIT-7377F0?style=flat-square)](LICENSE)
-[![Status: specification](https://img.shields.io/badge/status-specification-orange?style=flat-square)](ROADMAP.md)
+[![Status: specification and experimental prototype](https://img.shields.io/badge/status-specification%20%2B%20prototype-orange?style=flat-square)](ROADMAP.md)
 
 **Build with AI. Validate with evidence.**
 
@@ -13,9 +13,41 @@ The detailed documentation is written in Brazilian Portuguese (see [ADR 0001](do
 
 ## Project status
 
-**Contraprova is in the specification phase. There is no software to install yet.**
+**Contraprova is in the specification phase, with an experimental prototype of the engine that already runs. It is not a finished product.**
 
-There is no code, package, command or service. The product format (skill, agent, standalone program, integration, service, or a combination), the language and the architecture are open and will be decided through RFCs. Everything in this repository today is text: the manifesto, the specification, recorded decisions and collaboration rules. Nothing here should be read as a finished product, a deadline or a delivery promise.
+The prototype is a command-line program at the **advisory** level: it recommends and prevents nothing. There is no published package, and the product format (skill, agent, standalone program, integration, service, or a combination), the language and the architecture remain open and will be decided through RFCs. The technology choices of the prototype are provisional and do not close any open question ([ADR 0009](docs/adr/0009-prototipo-executavel-do-motor-em-paralelo.md), in Portuguese). The rest of the repository is text: the manifesto, the specification, recorded decisions and collaboration rules. Nothing here should be read as protection, a finished product, a deadline or a delivery promise.
+
+## Try the prototype
+
+Requirement: Node.js 22 or newer. The prototype has no dependencies. From a clone of this repository:
+
+```sh
+node motor/bin/contraprova.js verificar <project-folder>
+```
+
+Or straight from GitHub, without cloning:
+
+```sh
+npx --yes github:Efer-Eder/contraprova verificar .
+```
+
+There is no package on npm: this command downloads the code of this repository and runs it on your machine. Read it before running. The program, its messages and its report are in Brazilian Portuguese.
+
+What it does:
+
+- runs the tests of the project for real and uses the result, instead of believing whoever says they passed;
+- introduces simple defects into a temporary copy of the project, to see whether the tests notice (the original project is not changed);
+- audits GitHub Actions workflows heuristically, pointing out what may let failures pass;
+- produces an evidence report (`.contraprova/relatorio.md` and `.contraprova/relatorio.json`) with the decision: approved, blocked or inconclusive.
+
+Limits:
+
+- it recognizes only Node.js and Python projects, and the analysis of tests and workflows is heuristic, so it can be wrong in both directions;
+- there is no isolation: the code of the analyzed project runs on your machine with your permissions. Do not run it on a project you do not trust;
+- it is not protected mode: the result recommends and can be ignored by whoever controls the machine or the repository;
+- the "authorized exception" decision is not implemented.
+
+Full details, commands, exit codes and limits are in [motor/README.md](motor/README.md) (Portuguese).
 
 ## The problem
 
@@ -99,6 +131,8 @@ The stages describe capabilities, not technologies or deadlines (section 26 of t
 
 | Where | What is there |
 |---|---|
+| [motor/](motor/README.md) | Experimental, advisory prototype of the engine. See [ADR 0009](docs/adr/0009-prototipo-executavel-do-motor-em-paralelo.md). |
+| [skills/](skills/contraprova/SKILL.md) | Skill of the prototype, so agents can explain the result. |
 | [docs/manifesto.md](docs/manifesto.md) | Source of truth: manifesto and product specification. |
 | [docs/README.md](docs/README.md) | Documentation index. |
 | [docs/especificacao/](docs/especificacao/) | Principles, capabilities, acceptance criteria, decision states, threat model, usage flow, non-goals and glossary. |
@@ -112,12 +146,13 @@ The stages describe capabilities, not technologies or deadlines (section 26 of t
 
 ## How to take part now
 
-Since there is no code, the most useful contribution right now is intellectual:
+Since the product is not yet decided, the most useful contribution right now is intellectual, and trying the prototype on your own projects and reporting what it got right and wrong also helps:
 
 1. Read the [manifesto](docs/manifesto.md).
 2. Discuss the [open questions](docs/perguntas-em-aberto.md) in issues and Discussions.
 3. Propose larger changes through an [RFC](docs/rfcs/README.md).
 4. Fix, translate or improve the documentation.
+5. Run the prototype (`npm test` in a clone, or the section above) and report what it got right and wrong.
 
 The full flow is in [CONTRIBUTING.md](CONTRIBUTING.md). External contributions are certified by DCO (`git commit -s`; the maintainer's commits do not carry `Signed-off-by`), and AI use in them follows the [AI_POLICY.md](AI_POLICY.md) (disclosure is required for external contributions; maintainers are exempt from that requirement).
 
@@ -131,4 +166,4 @@ The project started under the working name VibeGuard and was renamed Contraprova
 
 ## License
 
-[MIT](LICENSE), provisionally: the license will be reviewed before the first release that contains code ([ADR 0002](docs/adr/0002-licenca-mit-provisoria-e-dco.md)). Copyright (c) 2026 Efer Eder.
+[MIT](LICENSE), provisionally: the license will be reviewed before the first release that contains code; the prototype has not been published as a release yet ([ADR 0002](docs/adr/0002-licenca-mit-provisoria-e-dco.md)). Copyright (c) 2026 Efer Eder.
