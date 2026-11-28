@@ -26,3 +26,6 @@ coverage/
 .claude/settings.local.json
 CLAUDE.local.md
 .obsidian/
+
+# Relatórios gerados pelo motor do Contraprova
+.contraprova/

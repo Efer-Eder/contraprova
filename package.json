@@ -1,0 +1,22 @@
+{
+  "name": "contraprova",
+  "version": "0.0.1",
+  "description": "Protótipo experimental do motor de verificação do Contraprova (nível consultivo local).",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "contraprova": "motor/bin/contraprova.js"
+  },
+  "files": [
+    "motor/bin",
+    "motor/src",
+    "skills"
+  ],
+  "scripts": {
+    "test": "node --test \"motor/testes/*.test.js\""
+  }
+}
