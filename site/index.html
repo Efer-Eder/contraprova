@@ -6,14 +6,14 @@
     <title>Contraprova · efer.online</title>
     <meta
       name="description"
-      content="Proposta open source de uma camada independente de verificação para software feito com IA. Desenvolva com IA. Valide com evidências. Em fase de especificação: ainda não há software para instalar."
+      content="Proposta open source de uma camada independente de verificação para software feito com IA. Desenvolva com IA. Valide com evidências. Em fase de especificação, com um protótipo experimental do motor que já roda. Não é produto pronto nem proteção."
     />
     <meta name="color-scheme" content="dark" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Contraprova" />
     <meta
       property="og:description"
-      content="Desenvolva com IA. Valide com evidências. Projeto open source em fase de especificação, sem software para instalar ainda."
+      content="Desenvolva com IA. Valide com evidências. Projeto open source em fase de especificação, com um protótipo experimental e consultivo do motor. Não é produto pronto."
     />
     <meta property="og:url" content="https://efer.online/projeto/contraprova/" />
     <meta property="og:locale" content="pt_BR" />
@@ -443,6 +443,23 @@
       ul.list li b {
         color: var(--text-1);
         font-weight: 500;
+      }
+
+      /* terminal block */
+      pre.code {
+        margin: 12px 0 0;
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        color: var(--text-1);
+        font: 400 13px/20px var(--mono);
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .note.warn {
+        border-color: rgba(217, 165, 74, 0.35);
+        background: rgba(217, 165, 74, 0.08);
       }
 
       /* illustration table */
@@ -1112,6 +1129,7 @@
         <symbol id="i-message" viewBox="0 0 24 24">
           <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
         </symbol>
+        <symbol id="i-terminal" viewBox="0 0 24 24"><path d="m4 17 6-6-6-6M12 19h8" /></symbol>
         <symbol id="i-file" viewBox="0 0 24 24">
           <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" />
           <path d="M14 2v4a2 2 0 0 0 2 2h4M10 13h4M10 17h4" />
@@ -1128,6 +1146,7 @@
         <nav class="nav-links" aria-label="Seções">
           <a class="anchor" href="#ideia">A ideia</a>
           <a class="anchor" href="#principios">Princípios</a>
+          <a class="anchor" href="#prototipo">Protótipo</a>
           <a class="anchor" href="#agentes">Agentes</a>
           <a class="anchor" href="#participar">Participar</a>
           <a class="anchor" href="#github">GitHub</a>
@@ -1147,7 +1166,7 @@
           <div class="eyebrow">
             <span class="badge">open source · MIT</span>
             <span class="badge warn"><span class="dot"></span>fase de especificação</span>
-            <span class="badge">sem código · sem instalação</span>
+            <span class="badge">protótipo experimental · consultivo</span>
           </div>
           <h1>Contraprova</h1>
           <p class="motto">Desenvolva com IA. Valide com evidências.</p>
@@ -1159,16 +1178,20 @@
           <div class="status" role="note">
             <svg class="i"><use href="#i-alert" /></svg>
             <div>
-              <b>Estado atual: em fase de especificação, ainda não há software para instalar.</b>
-              Não existe código, pacote, comando, serviço nem demo. O formato do produto (skill,
-              agente, programa, integração, serviço ou uma combinação) está em aberto e será
-              decidido por RFC. Hoje o repositório tem só texto: manifesto, especificação, decisões
-              registradas e regras de colaboração. Nada aqui é prazo ou promessa de entrega.
+              <b>Estado atual: fase de especificação, com um protótipo experimental do motor que já roda.</b>
+              O protótipo é um programa de linha de comando em Node.js, de nível consultivo: ele
+              recomenda, não impede nada. Não é produto pronto nem proteção, e não há pacote
+              publicado. O formato do produto (skill, agente, programa, integração, serviço ou uma
+              combinação) segue em aberto e será decidido por RFC. Nada aqui é prazo ou promessa de
+              entrega.
             </div>
           </div>
           <div class="ctas">
             <a class="btn primary" href="https://github.com/Efer-Eder/contraprova/blob/main/docs/manifesto.md"
               ><svg class="i"><use href="#i-book" /></svg>Ler o manifesto</a
+            >
+            <a class="btn secondary" href="#prototipo"
+              ><svg class="i"><use href="#i-terminal" /></svg>Experimente o protótipo</a
             >
             <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova"
               ><svg class="i"><use href="#i-github" /></svg>Repositório no GitHub</a
@@ -1261,7 +1284,7 @@
           </div>
           <div class="note">
             <b>Sobre a ilustração acima:</b> são exemplos inventados para explicar o conceito. O
-            Contraprova ainda não produz resultado nenhum.
+            que aparece ali não é saída do protótipo.
           </div>
         </section>
 
@@ -1413,13 +1436,94 @@
           </div>
         </section>
 
+        <section id="prototipo" aria-labelledby="t-proto">
+          <div class="sec-head">
+            <div class="eyebrow-mono">motor/README.md · docs/adr/0009</div>
+            <h2 id="t-proto">Experimente o protótipo</h2>
+            <p>
+              Existe um protótipo experimental do motor, em Node.js, que já roda. Ele é consultivo:
+              recomenda, não impede nada. Não é produto pronto nem proteção, e não há pacote
+              publicado.
+            </p>
+          </div>
+          <div class="grid2">
+            <div class="card">
+              <div class="tile-icon"><svg class="i"><use href="#i-terminal" /></svg></div>
+              <h3>Como rodar</h3>
+              <p>Requisito: Node.js 22 ou mais novo. O protótipo não tem dependências. Na pasta do projeto que você quer verificar:</p>
+              <pre class="code" tabindex="0" aria-label="Comando para rodar o protótipo">npx --yes github:Efer-Eder/contraprova verificar .</pre>
+              <div class="note warn">
+                <b>Atenção:</b> não há pacote no npm. Esse comando baixa o código do repositório e o
+                executa na máquina de quem roda.
+              </div>
+            </div>
+            <div class="card">
+              <div class="tile-icon"><svg class="i"><use href="#i-check" /></svg></div>
+              <h3>O que ele faz</h3>
+              <ul class="list ok">
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Executa os testes do projeto de verdade, em vez de confiar no que foi alegado.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Introduz defeitos simples numa cópia temporária para ver se os testes percebem. O projeto original não é alterado.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Audita workflows do GitHub Actions por heurística.</span>
+                </li>
+                <li>
+                  <svg class="i"><use href="#i-check" /></svg
+                  ><span>Gera um relatório de evidências com a decisão: aprovado, bloqueado ou inconclusivo.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card" style="margin-top: 12px">
+            <div class="tile-icon"><svg class="i"><use href="#i-alert" /></svg></div>
+            <h3>Limites</h3>
+            <ul class="list no">
+              <li>
+                <svg class="i"><use href="#i-x" /></svg
+                ><span>Só reconhece Node.js e Python. A análise de testes e da esteira é heurística e pode errar para os dois lados.</span>
+              </li>
+              <li>
+                <svg class="i"><use href="#i-x" /></svg
+                ><span>Sem isolamento: o código analisado roda na sua máquina, com as suas permissões. Não rode em projeto em que você não confia.</span>
+              </li>
+              <li>
+                <svg class="i"><use href="#i-x" /></svg
+                ><span>Não é modo protegido: quem controla a máquina ou o repositório pode ignorar o resultado.</span>
+              </li>
+              <li>
+                <svg class="i"><use href="#i-x" /></svg
+                ><span>A decisão "exceção autorizada" não está implementada.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="note">
+            <b>Contexto:</b> a decisão de prototipar em paralelo com a especificação está no
+            <a href="https://github.com/Efer-Eder/contraprova/blob/main/docs/adr/0009-prototipo-executavel-do-motor-em-paralelo.md">ADR 0009</a>.
+            A RFC 0001, sobre o formato do produto, está em
+            <a href="https://github.com/Efer-Eder/contraprova/pull/6">discussão</a>, e o protótipo
+            não a antecipa.
+          </div>
+          <div class="links">
+            <a class="btn secondary" href="https://github.com/Efer-Eder/contraprova/tree/main/motor"
+              ><svg class="i"><use href="#i-arrow" /></svg>Código e README do motor</a
+            >
+          </div>
+        </section>
+
         <section id="evolucao" aria-labelledby="t-evo">
           <div class="sec-head">
             <div class="eyebrow-mono">ROADMAP.md</div>
             <h2 id="t-evo">Evolução proposta, em 4 etapas</h2>
             <p>
               As etapas descrevem capacidades, não tecnologias nem prazos. Nenhuma está
-              implementada, e a ordem pode mudar conforme as RFCs.
+              pronta como produto: o protótipo experimental toca em itens de várias etapas sem concluir
+              nenhuma, e a ordem pode mudar conforme as RFCs.
             </p>
           </div>
           <div class="stages">
@@ -1445,8 +1549,9 @@
             </div>
           </div>
           <div class="note">
-            <b>Hoje estamos na etapa 0:</b> especificação. O código só começa depois que as
-            perguntas de formato forem respondidas por uma RFC aceita.
+            <b>Hoje estamos na etapa 0:</b> especificação, com um protótipo experimental em
+            paralelo (<a href="https://github.com/Efer-Eder/contraprova/blob/main/docs/adr/0009-prototipo-executavel-do-motor-em-paralelo.md">ADR 0009</a>).
+            O formato definitivo só é decidido por uma RFC aceita.
           </div>
         </section>
 
@@ -1528,7 +1633,7 @@
             <div class="eyebrow-mono">CONTRIBUTING.md · AI_POLICY.md</div>
             <h2 id="t-part">Como participar agora</h2>
             <p>
-              Como não há código, a contribuição mais útil neste momento é intelectual.
+              O formato do produto ainda não foi decidido, então a contribuição mais útil neste momento é intelectual. Testar o protótipo e relatar o que ele errou também ajuda.
             </p>
           </div>
           <div class="grid2">
@@ -1545,6 +1650,9 @@
                 </li>
                 <li>
                   <span><b>Corrija, traduza ou melhore a documentação.</b> Erro e link quebrado entram por PR direto.</span>
+                </li>
+                <li>
+                  <span><b>Rode o protótipo</b> em projetos seus e relate o que ele acertou e errou.</span>
                 </li>
               </ol>
             </div>
@@ -1662,7 +1770,7 @@
           id="faq"
           aria-labelledby="t-faq"
           data-ponto-title="Perguntas"
-          data-ponto="Tem uma pergunta que não está aqui? O repositório tem Discussions, e o manifesto responde a maioria. A resposta mais honesta sobre o Contraprova hoje é: ainda é texto."
+          data-ponto="Tem uma pergunta que não está aqui? O repositório tem Discussions, e o manifesto responde a maioria. A resposta mais honesta sobre o Contraprova hoje é: especificação, com um protótipo experimental."
           data-ponto-mood="feliz"
           data-ponto-hint="tirar uma dúvida"
         >
@@ -1673,11 +1781,11 @@
           <div class="faq">
             <details class="faq-i" data-ponto-faq>
               <summary>Já posso instalar ou usar o Contraprova?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <p>Não. O projeto está em fase de especificação e não existe software, comando nem serviço. O que dá para fazer hoje é ler o manifesto, discutir as perguntas em aberto e propor RFCs.</p>
+              <p>Em parte. Existe um protótipo experimental do motor, de linha de comando, que roda com Node.js 22 ou mais novo (veja a seção "Experimente o protótipo"). Ele é consultivo: recomenda, não impede nada, e não é produto pronto nem proteção. Não há pacote publicado nem serviço. Também dá para ler o manifesto, discutir as perguntas em aberto e propor RFCs.</p>
             </details>
             <details class="faq-i" data-ponto-faq>
               <summary>Quando vai ficar pronto?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <p>Não há prazo. O código só começa depois que as perguntas de formato forem respondidas por uma RFC aceita, e o roadmap descreve capacidades, não datas.</p>
+              <p>Não há prazo. O formato definitivo só é decidido por uma RFC aceita, e o roadmap descreve capacidades, não datas.</p>
             </details>
             <details class="faq-i" data-ponto-faq>
               <summary>Ele vai garantir que meu software não tem bugs?<span class="faq-ic" aria-hidden="true"></span></summary>
@@ -1693,7 +1801,7 @@
             </details>
             <details class="faq-i" data-ponto-faq>
               <summary>Qual é a licença?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <p>MIT, de forma provisória: ela será revisada antes da primeira versão que contenha código.</p>
+              <p>MIT, de forma provisória: ela será revisada antes da primeira versão que contenha código. O protótipo ainda não foi publicado como versão.</p>
             </details>
           </div>
         </section>
@@ -1887,7 +1995,7 @@
           bar.textContent = '';
           legend.textContent = '';
           if (!Object.keys(d.langs).length) {
-            legend.append(el('span', null, 'Só texto: nenhuma linguagem de programação detectada.'));
+            legend.append(el('span', null, 'Nenhuma linguagem detectada.'));
           }
           for (const [name, bytes] of Object.entries(d.langs)) {
             const pct = (bytes / total) * 100;
