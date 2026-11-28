@@ -61,7 +61,7 @@ test('relatorio.md traz as seções para quem não domina testes, sem travessão
   const md = fs.readFileSync(path.join(saida, 'relatorio.md'), 'utf8');
   for (const trecho of [
     '# Relatório do Contraprova',
-    '**Decisão: INCONCLUSIVO**',
+    '## Decisão: INCONCLUSIVO',
     'Nível de autoridade: consultivo local. Este resultado recomenda, não impede.',
     '## O que foi verificado',
     '## O que NÃO foi verificado',

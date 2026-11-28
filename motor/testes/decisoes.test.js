@@ -17,6 +17,16 @@ test('exemplo correto: aprovado, código 0, defeitos detectados', () => {
   assert.equal(r.json.nivelDeAutoridade, 'consultivo local');
 });
 
+test('o resumo do terminal mostra uma única execução dos testes, a prova e a decisão', () => {
+  const r = cli(['verificar', ex('correto'), '--mutantes', '3', '--saida', criarProjeto({})]);
+  assert.equal(r.codigo, 0, r.stdout + r.stderr);
+  const linhas = r.stdout.split('\n');
+  assert.equal(linhas.filter((l) => l.startsWith('Testes executados de verdade:')).length, 1);
+  assert.match(r.stdout, /^Testes executados de verdade: código de saída 0, em [\d,]+ (?:ms|s)\.$/m);
+  assert.ok(linhas.some((l) => l === 'Prova de eficácia: 3 de 3 defeitos introduzidos detectados, 0 não detectados, 0 com erro.'));
+  assert.ok(linhas.includes('Decisão: APROVADO'));
+});
+
 test('exemplo teste-fraco: inconclusivo, código 2, nenhum defeito detectado', () => {
   const r = cliJson(['verificar', ex('teste-fraco')]);
   assert.equal(r.codigo, 2, r.stdout + r.stderr);

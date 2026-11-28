@@ -68,7 +68,7 @@ export function montarMarkdown(r) {
   const L = [];
   L.push('# Relatório do Contraprova', '');
   if (r.decisao) {
-    L.push(`**Decisão: ${ROTULO_DECISAO[r.decisao]}**`, '', EXPLICACAO_DECISAO[r.decisao], '');
+    L.push(`## Decisão: ${ROTULO_DECISAO[r.decisao]}`, '',EXPLICACAO_DECISAO[r.decisao], '');
   } else {
     L.push(`Comando executado: \`${r.comando}\`. Este comando não emite decisão.`, '');
   }
