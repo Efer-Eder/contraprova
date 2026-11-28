@@ -1,5 +1,23 @@
 # Progresso
 
+## 2026-11-28: protótipo na main e página pública atualizada
+
+### O que foi feito
+
+- Mesclei o PR 7 (protótipo do motor) na `main`, com os 9 checks verdes (commit `adca39e`).
+- Atualizei `site/index.html`: as meta descriptions, o selo, o aviso de estado, a nota da etapa 0, o texto de participação, o FAQ e a resposta sobre licença deixam de dizer que não há código, comando ou instalação. Acrescentei a seção "Experimente o protótipo" (com âncora na navegação e botão no topo) e o item "Rode o protótipo" em "Como participar". O desenho, as classes e o Ponto ficaram como estavam; só entraram um bloco de código (`pre.code`) e uma variante de aviso (`.note.warn`) feitos com os tokens existentes.
+- `motor/README.md`: removi as frases que diziam que o `npx` a partir da branch principal ainda não tinha sido testado.
+
+### Verificado em 2026-11-28 (Windows 11, Node 24)
+
+- `npx --yes github:Efer-Eder/contraprova verificar . --mutantes 3` a partir da `main`, numa pasta temporária fora do repositório, sem `.contraprova`: `teste-fraco` deu inconclusivo (saída 2, 0 de 3 defeitos detectados) e `correto` deu aprovado (saída 0, 3 de 3 detectados).
+- `site/index.html`: sem U+2014 nem U+2013 e sem emoji; tags balanceadas conferidas com `html.parser`; servido localmente, a seção nova renderizou em desktop e em 375 de largura, sem rolagem horizontal.
+
+### O que NÃO foi verificado
+
+- Contraste e foco da seção nova foram revistos a olho, sem auditoria automática. Só o navegador embutido do ambiente foi usado, não outros navegadores.
+- O `npx` foi testado só no Windows com Node 24. Linux e macOS rodam na CI (`motor.yml`), mas não à mão.
+
 ## 2026-11-27: protótipo executável do motor e ADR 0009
 
 ### O que foi feito

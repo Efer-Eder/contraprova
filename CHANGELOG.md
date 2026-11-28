@@ -35,6 +35,7 @@ projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/)
 
 ### Alterado
 
+- Página pública (`site/index.html`) deixa de dizer que não há código, comando ou instalação: passa a dizer fase de especificação com um protótipo experimental do motor, consultivo, sem pacote publicado e não pronto. Nova seção "Experimente o protótipo" (requisito, comando `npx` com o aviso de que ele executa código do repositório na máquina de quem roda, o que faz e os limites).
 - `AGENTS.md`, READMEs, `ROADMAP.md`, `CONTRIBUTING.md`, `SECURITY.md`, `SUPPORT.md`, `docs/` e o formulário de proposta deixam de dizer que não há código: passam a dizer especificação com protótipo experimental e consultivo (ADR 0009).
 - ADR 0005 marcado como substituído pelo ADR 0009.
 
