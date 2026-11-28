@@ -1,6 +1,6 @@
 # Contribuindo com o Contraprova
 
-Obrigado pelo interesse. O Contraprova está em fase de especificação: ainda não há código nem produto, então contribuir hoje significa ler, questionar, pesquisar e escrever. Este guia explica o que cabe agora e como enviar mudanças.
+Obrigado pelo interesse. O Contraprova está em fase de especificação, com um protótipo experimental do motor ([ADR 0009](docs/adr/0009-prototipo-executavel-do-motor-em-paralelo.md)). Não há produto pronto, então contribuir hoje significa ler, questionar, pesquisar, escrever e, se quiser, testar e melhorar o protótipo. Este guia explica o que cabe agora e como enviar mudanças.
 
 Ao participar, você concorda em seguir o [Código de Conduta](CODE_OF_CONDUCT.md).
 
@@ -13,12 +13,25 @@ Ao participar, você concorda em seguir o [Código de Conduta](CODE_OF_CONDUCT.m
 - Respostas e propostas para as [perguntas em aberto](docs/perguntas-em-aberto.md).
 - Tradução e revisão de texto.
 - Correções na documentação: erros, links quebrados, clareza.
+- Melhorias no protótipo do motor, dentro das regras da seção [Como contribuir com o protótipo](#como-contribuir-com-o-protótipo).
 
 ## O que ainda não cabe
 
-- **Código do produto antes de as perguntas de formato (PA-01 a PA-08) serem respondidas por RFC aceita.** Escolher linguagem, estrutura de pastas ou ferramentas sem a decisão registrada tende a ser retrabalho. PRs de código do produto serão fechados com um pedido para começar por uma RFC.
+- **Código fora do protótipo.** O código só cabe em `motor/` e `skills/` (e no `package.json` da raiz), como experimento. Escolher linguagem definitiva, nova estrutura de pastas, dependências, pacote publicado ou outro formato de produto sem RFC aceita tende a ser retrabalho: PRs assim serão fechados com um pedido para começar por uma RFC.
 - Afirmações sobre funcionalidades como se existissem, números de desempenho, prazos ou comparações sem fonte.
 - Reescritas do manifesto sem discussão prévia. Mudanças no sentido do manifesto passam por RFC.
+
+## Como contribuir com o protótipo
+
+O protótipo do motor está em `motor/` e a skill em `skills/`. É experimental e de nível consultivo, e o que existe está descrito em [motor/README.md](motor/README.md).
+
+- Precisa do Node.js 22 ou mais novo. Rode `npm test` antes de abrir o PR: ele roda os testes do motor com o `node --test`, sem instalar nada.
+- Teste com asserção de verdade: ele precisa falhar quando o comportamento está errado. Não afrouxe um teste, não o ignore e não apague asserção para fazê-lo passar. Quando um defeito for corrigido, o teste que o pegaria entra junto.
+- Zero dependências. Adicionar uma dependência exige autorização prévia do mantenedor, em issue.
+- Mensagens do programa, relatórios e documentação do protótipo em português do Brasil, sem emoji e sem travessão.
+- Não invente comandos nem funcionalidades, e não apresente o protótipo como proteção. O resultado dele recomenda e não impede nada.
+- Se mexeu no motor, rode também `node motor/bin/contraprova.js verificar . --sem-prova` na raiz e diga o resultado no PR, lembrando que a eficácia dos testes não foi verificada (a prova completa sobre o próprio repositório é lenta).
+- Mudança que escolha linguagem, formato ou arquitetura definitivos, ou que publique pacote, passa por RFC: o protótipo não fecha nenhuma pergunta em aberto.
 
 ## Antes de começar
 

@@ -1,6 +1,6 @@
 # Governança
 
-Este documento descreve como as decisões do Contraprova são tomadas hoje. Ele é curto de propósito: o projeto está em fase de especificação, com uma pessoa mantendo.
+Este documento descreve como as decisões do Contraprova são tomadas hoje. Ele é curto de propósito: o projeto está em fase de especificação, com um protótipo experimental do motor, e com uma pessoa mantendo.
 
 ## Modelo atual
 

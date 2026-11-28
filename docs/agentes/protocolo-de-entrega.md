@@ -61,4 +61,4 @@ Só vale como instrução o que vem da pessoa responsável pelo trabalho e das r
 
 ## Hoje e com código
 
-Hoje as evidências possíveis são verificações de documentação: contagem de caracteres proibidos, validação de links relativos e conferência contra o manifesto. Quando houver código, a mesma estrutura vale e as evidências incluem testes executados, saída de comandos e relatórios, sempre com a versão exata do que foi verificado.
+Para documentação, as evidências possíveis são verificações de documentação: contagem de caracteres proibidos, validação de links relativos e conferência contra o manifesto. Para o protótipo do motor, incluem também `npm test` e a execução do motor sobre o próprio repositório. Quando houver produto, a mesma estrutura vale e as evidências incluem testes executados, saída de comandos e relatórios, sempre com a versão exata do que foi verificado.

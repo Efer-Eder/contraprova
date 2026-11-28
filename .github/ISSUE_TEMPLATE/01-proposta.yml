@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        O Contraprova está na fase de especificação. Propostas devem se apoiar no manifesto e não podem presumir código, formato ou tecnologia já decididos.
+        O Contraprova está na fase de especificação, com um protótipo experimental do motor. Propostas devem se apoiar no manifesto e não podem presumir formato ou tecnologia já decididos: as escolhas do protótipo são provisórias.
   - type: textarea
     id: problema
     attributes:

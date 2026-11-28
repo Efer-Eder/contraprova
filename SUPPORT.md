@@ -1,6 +1,6 @@
 # Suporte
 
-O Contraprova está em fase de especificação e não há software para dar suporte. Este arquivo diz onde conversar sobre o projeto.
+O Contraprova está em fase de especificação, com um protótipo experimental do motor ([motor/README.md](motor/README.md)). Não há produto nem versão suportada, e o protótipo não tem suporte garantido. Este arquivo diz onde conversar sobre o projeto.
 
 ## Onde perguntar
 

@@ -2,7 +2,7 @@
 
 Os 16 cenários da seção 24 do [manifesto](../manifesto.md). A coluna "Resultado esperado" reproduz o texto do manifesto. Os vínculos com princípios ([principios.md](principios.md)) e capacidades ([capacidades.md](capacidades.md)) são leituras editoriais.
 
-Ainda não há implementação, portanto a coluna "Como será verificado" está como "a definir" em todos os cenários. A seção 23 do manifesto exige cenários independentes com projetos deliberadamente defeituosos, corretos e ambíguos; o desenho desses cenários é trabalho futuro e passa por [RFC](../rfcs/README.md).
+Ainda não há implementação do produto (o protótipo de `motor/` é experimental e não foi avaliado contra estes critérios), portanto a coluna "Como será verificado" está como "a definir" em todos os cenários. A seção 23 do manifesto exige cenários independentes com projetos deliberadamente defeituosos, corretos e ambíguos; o desenho desses cenários é trabalho futuro e passa por [RFC](../rfcs/README.md).
 
 | ID | Cenário | Resultado esperado | Princípios | Capacidades | Como será verificado |
 |---|---|---|---|---|---|

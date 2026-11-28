@@ -1,6 +1,6 @@
 # Publicar a página do projeto
 
-A página pública do Contraprova é um arquivo estático em `site/index.html`, servido em `https://efer.online/projeto/contraprova/`. Ela não é código do produto: o projeto continua em fase de especificação, e a página diz isso logo no topo. Qualquer mudança nela deve manter essa honestidade (sem instalação, demo, número de usuários ou prazo).
+A página pública do Contraprova é um arquivo estático em `site/index.html`, servido em `https://efer.online/projeto/contraprova/`. Ela não é código do produto: o projeto continua em fase de especificação, com um protótipo experimental do motor ([ADR 0009](adr/0009-prototipo-executavel-do-motor-em-paralelo.md)), e a página deve dizer isso logo no topo. Qualquer mudança nela deve manter essa honestidade (sem instalação, demo, número de usuários ou prazo).
 
 ## O que existe
 
